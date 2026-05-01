@@ -1,0 +1,189 @@
+/* ===== FIND US PAGE ===== */
+.findus-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+}
+
+/* ===== HEADER ===== */
+.findus-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.findus-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a2a;
+    margin-bottom: 12px;
+}
+
+.findus-header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* ===== INFO GRID ===== */
+.findus-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* ===== INFO CARD ===== */
+.findus-info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.findus-info-card:hover {
+    transform: translateY(-4px);
+}
+
+.findus-info-icon {
+    width: 60px;
+    height: 60px;
+    background: #fce4f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 16px;
+}
+
+.findus-info-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a2a;
+    margin-bottom: 10px;
+}
+
+.findus-info-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.findus-hours {
+    color: #e91e8c !important;
+    font-weight: 600 !important;
+}
+
+/* ===== HARTA ===== */
+.findus-map {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* ===== DIRECTIONS ===== */
+.findus-directions {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 30px;
+}
+
+.findus-directions h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2a;
+    margin-bottom: 12px;
+}
+
+.findus-directions p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.findus-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-maps {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #e91e8c, #c2185b);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 30, 140, 0.3);
+}
+
+.btn-maps:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(233, 30, 140, 0.4);
+}
+
+.btn-call {
+    padding: 14px 28px;
+    background: white;
+    color: #e91e8c;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid #e91e8c;
+    transition: all 0.3s ease;
+}
+
+.btn-call:hover {
+    background: #fce4f3;
+    transform: translateY(-2px);
+}
+
+/* ===== BANNER ===== */
+.findus-banner {
+    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    color: white;
+}
+
+.findus-banner h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.findus-banner p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .findus-page {
+        padding: 90px 16px 40px;
+    }
+
+    .findus-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .findus-buttons {
+        flex-direction: column;
+    }
+
+    .findus-banner {
+        padding: 30px 20px;
+    }
+}

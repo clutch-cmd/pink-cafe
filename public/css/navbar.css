@@ -3,30 +3,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 32px;
+    padding: 12px 40px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 50;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Pe alte pagini — alb cu umbră subtilă */
-.navbar {
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border-bottom: none;
-}
-
-/* Pe pagina Home — transparent cu blur */
-.home-page .navbar {
-    background: rgba(0, 0, 0, 0.30);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: none;
-    border-bottom: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s ease;
 }
+
 
 
 /* ========== BRAND / LOGO ========== */
@@ -40,21 +30,16 @@
 .navbar-logo {
     width: 48px;
     height: 48px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
-/* Titlu pe alte pagini */
+/* Titlu — negru pe toate paginile */
 .navbar-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #db2777; /* pink-600 */
+    color: #1a1a1a;
 }
-
-/* Titlu pe Home */
-.home-page .navbar-title {
-    color: #ffffff;
-}
-
 
 /* ========== LINKURI DESKTOP ========== */
 .navbar-links {
@@ -65,36 +50,22 @@
     padding: 0;
 }
 
-/* Linkuri pe alte pagini */
+/* Negru pe toate paginile inclusiv Home */
 .navbar-links a {
     text-decoration: none;
-    color: #374151; /* gray-700 */
+    color: #1a1a1a;
     font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.15s ease;
 }
 
 .navbar-links a:hover {
-    color: #db2777; /* pink-600 */
+    color: #db2777;
 }
 
 .navbar-links a.active {
-    color: #db2777; /* pink-600 */
+    color: #db2777;
 }
-
-/* Linkuri pe Home */
-.home-page .navbar-links a {
-    color: rgba(255, 255, 255, 0.95);
-}
-
-.home-page .navbar-links a:hover {
-    color: #f9a8d4; /* pink-300 */
-}
-
-.home-page .navbar-links a.active {
-    color: #f472b6; /* pink-400 */
-}
-
 
 /* ========== BUTON HAMBURGER ========== */
 .navbar-toggle {
@@ -103,13 +74,8 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    color: #111827; /* gray-900 */
+    color: #1a1a1a;
 }
-
-.home-page .navbar-toggle {
-    color: #ffffff;
-}
-
 
 /* ========== MOBILE ========== */
 @media (max-width: 768px) {
@@ -125,7 +91,6 @@
         font-size: 1.5rem;
     }
 
-    /* Linkuri mobile — inline sub navbar (nu absolute) */
     .navbar-links {
         display: none;
         flex-direction: column;
@@ -139,9 +104,8 @@
         display: flex;
     }
 
-    /* Linkuri mobile pe alte pagini */
     .navbar-links a {
-        color: #374151;
+        color: #1a1a1a;
         font-size: 1rem;
         padding: 6px 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -150,16 +114,5 @@
     .navbar-links a:hover,
     .navbar-links a.active {
         color: #db2777;
-    }
-
-    /* Linkuri mobile pe Home */
-    .home-page .navbar-links a {
-        color: rgba(255, 255, 255, 0.95) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-    }
-
-    .home-page .navbar-links a:hover,
-    .home-page .navbar-links a.active {
-        color: #f472b6 !important;
     }
 }

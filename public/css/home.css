@@ -1,22 +1,7 @@
-/* Navbar transparent doar pe home */
-.home-page .navbar {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.home-page .navbar-links a,
-.home-page .navbar-title {
-    color: white;
-}
-
-.home-page .navbar-links a:hover,
-.home-page .navbar-links a.active {
-    color: #e91e8c;
-}
 /* ===== HERO ===== */
 .hero {
     min-height: 100vh;
     margin-top: 0;
-    padding-top: 80px; /* spațiu pentru navbar */
     background: linear-gradient(
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
@@ -76,7 +61,7 @@
     justify-content: center;
 }
 
-/* Buton Glass */
+/* ===== BUTON GLASS ===== */
 .btn-glass {
     position: relative;
     display: flex;
@@ -103,16 +88,12 @@
     transform: scale(1.05);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
-/* Gradient overlay la hover */
+
 .btn-glass::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(236, 72, 153, 0.2),
-        rgba(168, 85, 247, 0.2)
-    );
+    background: linear-gradient(to right, rgba(236, 72, 153, 0.2), rgba(168, 85, 247, 0.2));
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 16px;
@@ -122,17 +103,11 @@
     opacity: 1;
 }
 
-/* Shimmer/shine effect */
 .btn-glass::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
     transform: translateX(-100%);
     transition: transform 1s ease;
     border-radius: 16px;
@@ -142,7 +117,7 @@
     transform: translateX(100%);
 }
 
-/* Buton Pink */
+/* ===== BUTON PINK ===== */
 .btn-pink {
     position: relative;
     display: flex;
@@ -170,16 +145,11 @@
     box-shadow: 0 20px 60px rgba(236, 72, 153, 0.4);
 }
 
-/* Gradient overlay la hover */
 .btn-pink::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(236, 72, 153, 0.3),
-        rgba(219, 39, 119, 0.3)
-    );
+    background: linear-gradient(to right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.3));
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 16px;
@@ -189,17 +159,11 @@
     opacity: 1;
 }
 
-/* Shimmer/shine effect */
 .btn-pink::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
     transform: translateX(-100%);
     transition: transform 1s ease;
     border-radius: 16px;
@@ -237,20 +201,17 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     aspect-ratio: 4/3;
     background: #f5f5f5;
-    
 }
-
-
 
 .gallery-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease; /* ← adaugă asta */
+    transition: transform 0.4s ease;
 }
 
 .gallery-card:hover img {
-    transform: scale(1.08); /* ← zoom la hover */
+    transform: scale(1.08);
 }
 
 /* ===== DE CE PINK CAFE ===== */
@@ -272,13 +233,13 @@
     border-radius: 16px;
     padding: 35px 25px;
     text-align: center;
-    box-shadow: 0 8px 30px rgba(233, 30, 140, 0.12); /* ← umbră roz */
+    box-shadow: 0 8px 30px rgba(233, 30, 140, 0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .why-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 40px rgba(233, 30, 140, 0.2); /* ← umbră mai mare la hover */
+    box-shadow: 0 16px 40px rgba(233, 30, 140, 0.2);
 }
 
 .why-icon {
