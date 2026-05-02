@@ -17,7 +17,22 @@
     transition: background 0.3s ease;
 }
 
+.navbar-logout {
+    background: none;
+    border: 1.5px solid #e91e8c;
+    color: #e91e8c;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
 
+.navbar-logout:hover {
+    background: #e91e8c;
+    color: white;
+}
 
 /* ========== BRAND / LOGO ========== */
 .navbar-brand {

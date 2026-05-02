@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    
     @yield('styles')
 </head>
-
 <body class="{{ request()->routeIs('home') ? 'home-page' : '' }}">
-    
+
     @include('components.navbar')
 
     <main>
@@ -21,13 +19,16 @@
 
     @include('components.footer')
 
-    @yield('scripts')
     <script>
-    const toggle = document.getElementById('navbarToggle');
-    const links = document.getElementById('navbarLinks');
-    toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
-    });
-</script>
+        const btn = document.getElementById('navbarToggle');
+        const links = document.getElementById('navbarLinks');
+        if(btn) {
+            btn.addEventListener('click', () => {
+                links.classList.toggle('open');
+            });
+        }
+    </script>
+
+    @yield('scripts')
 </body>
 </html>
