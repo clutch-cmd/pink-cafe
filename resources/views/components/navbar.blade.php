@@ -1,8 +1,9 @@
 <nav class="navbar">
-    <div class="navbar-brand">
+    {{-- LOGO clickabil spre Home --}}
+    <a href="{{ route('home') }}" class="navbar-brand">
         <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe Logo" class="navbar-logo">
-        <span class="navbar-title">Pink Cafe</span>
-    </div>
+        <span class="navbar-title">PINK CAFÉ</span>
+    </a>
 
     <button class="navbar-toggle" id="navbarToggle">&#9776;</button>
 
@@ -11,25 +12,17 @@
         <li><a href="{{ route('meniu') }}" class="{{ request()->routeIs('meniu') ? 'active' : '' }}">Meniu</a></li>
         <li><a href="{{ route('contacte') }}" class="{{ request()->routeIs('contacte') ? 'active' : '' }}">Contacte</a></li>
         <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us</a></li>
-    </ul>
 
-    <ul class="navbar-links" id="navbarLinks">
-    <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
-    <li><a href="{{ route('meniu') }}" class="{{ request()->routeIs('meniu') ? 'active' : '' }}">Meniu</a></li>
-    <li><a href="{{ route('contacte') }}" class="{{ request()->routeIs('contacte') ? 'active' : '' }}">Contacte</a></li>
-    <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us</a></li>
-@auth
-    <li><a href="#" style="color:#e91e8c">
-        👤 {{ Auth::user()->name }}
-    </a></li>
-    <li>
-        <form method="POST" action="{{ route('logout') }}" style="display:inline">
-            @csrf
-            <button type="submit" class="navbar-logout">Logout</button>
-        </form>
-    </li>
-@else
-    <li><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a></li>
-@endauth
-</ul>
+        @auth
+            <li><a href="#" style="color:#e91e8c; font-weight:600">👤 {{ Auth::user()->name }}</a></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}" style="display:inline">
+                    @csrf
+                    <button type="submit" class="navbar-logout">Logout</button>
+                </form>
+            </li>
+        @else
+            <li><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a></li>
+        @endauth
+    </ul>
 </nav>

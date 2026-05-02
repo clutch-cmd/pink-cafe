@@ -12,7 +12,7 @@
 
     <div class="findus-header">
         <h1>Find Us</h1>
-        <p>Vino să ne vizitezi la Pink Cafe în Cahul</p>
+        <p>Vino să ne vizitezi la PINK CAFÉ în Cahul</p>
     </div>
 
     <div class="findus-info-grid">
@@ -55,7 +55,7 @@
     {{-- CUM AJUNGI --}}
     <div class="findus-directions">
         <h2>Cum ajungi la noi</h2>
-        <p>Pink Cafe se află în centrul orașului Cahul, pe Calea Republicii 24a, nr. 4. Suntem ușor accesibili din orice punct al orașului.</p>
+        <p>PINK CAFÉ se află în centrul orașului Cahul, pe Calea Republicii 24a, nr. 4. Suntem ușor accesibili din orice punct al orașului.</p>
         <div class="findus-buttons">
             <a href="https://maps.google.com/?q=Calea+Republicii+24a+Cahul" target="_blank" class="btn-maps">
                 📍 Deschide în Google Maps
@@ -69,7 +69,7 @@
     {{-- BANNER --}}
     <div class="findus-banner">
         <h2>Te așteptăm cu drag! 💖</h2>
-        <p>Vino să experimentezi atmosfera unică a Pink Cafe și să savurezi cele mai delicioase deserturi și băuturi din Cahul</p>
+        <p>Vino să experimentezi atmosfera unică a PINK CAFÉ și să savurezi cele mai delicioase deserturi și băuturi din Cahul</p>
     </div>
 
 </div>

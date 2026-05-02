@@ -17,7 +17,7 @@
     <section class="hero">
         <div class="hero-content">
             <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe Logo" class="hero-logo">
-            <h1 class="hero-title">Pink Cafe</h1>
+            <h1 class="hero-title">PINK CAFÉ</h1>
             <p class="hero-subtitle">Locul unde se întâlnește stilul modern cu deserturile unice și delicioase</p>
             <div class="hero-buttons">
                 <a href="{{ route('meniu') }}" class="btn-glass">
@@ -46,9 +46,9 @@
         </div>
     </section>
 
-    {{-- DE CE PINK CAFE SECTION --}}
+    {{-- DE CE PINK CAFÉ SECTION --}}
     <section class="why-us">
-        <h2 class="section-title">De ce Pink Cafe?</h2>
+        <h2 class="section-title">De ce PINK CAFÉ?</h2>
         <div class="why-grid">
 
             <div class="why-card">

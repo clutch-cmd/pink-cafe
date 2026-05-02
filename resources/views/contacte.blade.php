@@ -12,7 +12,7 @@
 
     <div class="contacte-header">
         <h1>Contacte</h1>
-        <p>Te așteptăm cu drag la Pink Cafe!</p>
+        <p>Te așteptăm cu drag la PINK CAFÉ!</p>
     </div>
 
     <div class="contacte-grid">
@@ -52,7 +52,7 @@
 
     <div class="contacte-info-box">
         <h2>Ne găsești aici!</h2>
-        <p>Pink Cafe este locul perfect pentru a savura o cafea delicioasă, a te bucura de deserturi unice sau a petrece timp de calitate cu prietenii.</p>
+        <p>PINK CAFÉ este locul perfect pentru a savura o cafea delicioasă, a te bucura de deserturi unice sau a petrece timp de calitate cu prietenii.</p>
         <div class="contacte-tags">
             <span class="tag">Cafea de specialitate</span>
             <span class="tag">Deserturi fresh</span>

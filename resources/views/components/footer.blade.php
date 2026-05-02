@@ -4,7 +4,7 @@
         <div class="footer-brand">
             <div class="footer-brand-top">
                 <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe" class="footer-logo">
-                <span class="footer-title">Pink Cafe</span>
+                <span class="footer-title">PINK CAFÉ</span>
             </div>
             <p class="footer-desc">O destinație plină de viață și culori din care ieși plin de emoții pozitive</p>
         </div>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p>© 2026 Pink Cafe. Toate drepturile rezervate.</p>
+        <p>© 2026 PINK CAFÉ. Toate drepturile rezervate.</p>
         <p>Luni - Duminică: 07:00 - 22:00</p>
     </div>
 </footer>
