@@ -18,7 +18,7 @@
     {{-- BAUTURI CALDE --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <span class="meniu-icon">☕</span> Băuturi Calde
+            <i class="fa-solid fa-mug-saucer" style="color: #e91e63; margin-right: 10px;"></i> Băuturi Calde
         </h2>
         <div class="meniu-grid">
             @foreach($bauturiCalde as $produs)
@@ -26,7 +26,7 @@
                     <span class="meniu-item-name">{{ $produs->nume }}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <span class="meniu-info-icon">ℹ</span>
+                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
                     </div>
                 </div>
             @endforeach
@@ -36,7 +36,7 @@
     {{-- COCKTAILURI --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <span class="meniu-icon">🍷</span> Cocktailuri
+            <i class="fa-solid fa-glass-martini-alt" style="color: #e91e63; margin-right: 10px;"></i> Cocktailuri
         </h2>
         <div class="meniu-grid">
             @foreach($cocktailuri as $produs)
@@ -44,7 +44,7 @@
                     <span class="meniu-item-name">{{ $produs->nume }}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <span class="meniu-info-icon">ℹ</span>
+                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
                     </div>
                 </div>
             @endforeach
@@ -54,7 +54,7 @@
     {{-- LEMONADES --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <span class="meniu-icon">🍋</span> Fresh Lemonades
+            <i class="fa-solid fa-droplet" style="color: #e91e63; margin-right: 10px;"></i> Fresh Lemonades
         </h2>
         <div class="meniu-grid">
             @foreach($lemonades as $produs)
@@ -62,7 +62,7 @@
                     <span class="meniu-item-name">{{ $produs->nume }}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <span class="meniu-info-icon">ℹ</span>
+                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
                     </div>
                 </div>
             @endforeach
@@ -72,7 +72,8 @@
     {{-- DESERTURI --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <span class="meniu-icon">🎂</span> Deserturi
+            <i class="fa-solid fa-cake-candles" style="color: #e91e63; margin-right: 10px;"></i> Deserturi
+    </h2>
         </h2>
         <div class="meniu-grid meniu-grid-2">
             @foreach($deserturi as $produs)
@@ -85,7 +86,7 @@
                     </div>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <span class="meniu-info-icon">ℹ</span>
+                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
                     </div>
                 </div>
             @endforeach
@@ -122,7 +123,7 @@
                     <p id="modalAlergeni"></p>
                 </div>
             </div>
-            <button class="modal-btn-close" onclick="closeModal()">Închide</button>
+           
         </div>
     </div>
 </div>
@@ -141,7 +142,6 @@ const produse = {
     },
     @endforeach
 };
-
 const categorieLabel = {
     'bauturi_calde': 'Băuturi Calde',
     'cocktailuri': 'Cocktailuri',
@@ -149,38 +149,44 @@ const categorieLabel = {
     'deserturi': 'Deserturi'
 };
 
-const categorieIcon = {
-    'bauturi_calde': '☕',
-    'cocktailuri': '🍷',
-    'lemonades': '🍋',
-    'deserturi': '🎂'
+// Aici am schimbat emoji-urile cu iconițele Font Awesome
+const categorieIconHTML = {
+    'bauturi_calde': '<i class="fa-solid fa-mug-saucer"></i>',
+    'cocktailuri': '<i class="fa-solid fa-glass-martini-alt"></i>',
+    'lemonades': '<i class="fa-solid fa-droplet"></i>',
+    'deserturi': '<i class="fa-solid fa-cake-candles"></i>'
 };
 
 function openModal(id) {
     const p = produse[id];
     if (!p) return;
 
-    document.getElementById('modalTitle').textContent = p.nume;
-    document.getElementById('modalIcon').textContent = categorieIcon[p.categorie];
+    // Folosim .innerHTML în loc de .textContent pentru nume ca să reparăm simbolul "&"
+    document.getElementById('modalTitle').innerHTML = p.nume;
+    
+    // Folosim .innerHTML pentru a insera tag-ul <i> de Font Awesome
+    document.getElementById('modalIcon').innerHTML = categorieIconHTML[p.categorie];
+    
     document.getElementById('modalCategorie').textContent = categorieLabel[p.categorie].toUpperCase();
     document.getElementById('modalPret').textContent = p.pret + ' lei';
 
+    // Reparăm și restul câmpurilor pentru orice eventualitate
     if (p.descriere) {
-        document.getElementById('modalDescriere').textContent = p.descriere;
+        document.getElementById('modalDescriere').innerHTML = p.descriere;
         document.getElementById('modalDescriereSection').style.display = 'block';
     } else {
         document.getElementById('modalDescriereSection').style.display = 'none';
     }
 
     if (p.ingrediente) {
-        document.getElementById('modalIngrediente').textContent = p.ingrediente;
+        document.getElementById('modalIngrediente').innerHTML = p.ingrediente;
         document.getElementById('modalIngredienteSection').style.display = 'block';
     } else {
         document.getElementById('modalIngredienteSection').style.display = 'none';
     }
 
     if (p.alergeni) {
-        document.getElementById('modalAlergeni').textContent = p.alergeni;
+        document.getElementById('modalAlergeni').innerHTML = p.alergeni;
         document.getElementById('modalAlergeniSection').style.display = 'flex';
     } else {
         document.getElementById('modalAlergeniSection').style.display = 'none';

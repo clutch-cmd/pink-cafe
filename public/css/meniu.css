@@ -280,23 +280,7 @@
 }
 
 /* ===== BUTON INCHIDE ===== */
-.modal-btn-close {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #e91e8c, #9c27b0);
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-    margin-top: 8px;
-}
 
-.modal-btn-close:hover {
-    opacity: 0.9;
-}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
