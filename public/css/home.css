@@ -214,6 +214,56 @@
     transform: scale(1.08);
 }
 
+/* ===== GALLERY MODAL ===== */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+    cursor: zoom-out;
+}
+.gallery-modal.active {
+    display: flex;
+    animation: fadeIn 0.3s;
+}
+.gallery-modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    object-fit: contain;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.gallery-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    text-shadow: 0 2px 8px #000;
+    transition: color 0.2s;
+}
+.gallery-close:hover {
+    color: #e91e8c;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* ===== DE CE PINK CAFE ===== */
 .why-us {
     padding: 80px 40px;

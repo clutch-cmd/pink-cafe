@@ -50,9 +50,15 @@
 }
 
 .footer-contact p {
-    color: rgba(255,255,255,0.8);
-    font-size: 0.85rem;
-    margin-bottom: 8px;
+    display: flex;
+    align-items: center; /* Centrează iconița pe aceeași linie cu textul */
+    
+    
+    gap: 12px; /* Acesta este spațiul dintre iconiță și numărul de tel/adresă */
+    
+    color: #ffffff;
+    font-size: 0.88rem;
+    margin-bottom: 11px; /* Spațiul dintre rândul cu telefon și cel cu adresa */
 }
 
 .footer-social-icons {

@@ -9,10 +9,16 @@
             <p class="footer-desc">O destinație plină de viață și culori din care ieși plin de emoții pozitive</p>
         </div>
 
-        <div class="footer-contact">
+       <div class="footer-contact">
             <h4>Contact</h4>
-            <p>📞 0790 43 047</p>
-            <p>📍 Calea Republicii 24a, nr.4, Cahul</p>
+            <p>
+                <i class="fa-solid fa-phone-flip footer-contact-icon"></i>
+                0790 43 047
+            </p>
+            <p>
+                <i class="fa-solid fa-location-dot footer-contact-icon"></i> 
+                Calea Republicii 24a, nr.4, Cahul
+            </p>
         </div>
 
         <div class="footer-social">
