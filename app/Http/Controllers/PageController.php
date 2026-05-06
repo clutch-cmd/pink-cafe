@@ -13,19 +13,21 @@ class PageController extends Controller
     }
 
     public function meniu()
-    {
-        $bauturiCalde = Produs::where('categorie', 'bauturi_calde')->get();
-        $cocktailuri = Produs::where('categorie', 'cocktailuri')->get();
-        $lemonades = Produs::where('categorie', 'lemonades')->get();
-        $deserturi = Produs::where('categorie', 'deserturi')->get();
+{
+    $bauturiCalde = Produs::where('categorie', 'bauturi_calde')->get();
+    $cocktailuri = Produs::where('categorie', 'cocktailuri')->get();
+    $lemonades = Produs::where('categorie', 'lemonades')->get();
+    $deserturi = Produs::where('categorie', 'deserturi')->get();
+    $inghetata = Produs::where('categorie', 'inghetata')->get();
 
-        return view('meniu', compact(
-            'bauturiCalde',
-            'cocktailuri',
-            'lemonades',
-            'deserturi'
-        ));
-    }
+    return view('meniu', compact(
+        'bauturiCalde',
+        'cocktailuri',
+        'lemonades',
+        'deserturi',
+        'inghetata'
+    ));
+}
 
     public function contacte()
     {

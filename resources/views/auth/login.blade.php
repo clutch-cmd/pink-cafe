@@ -27,7 +27,7 @@
             @csrf
 
             <div class="auth-field">
-                <label> Email</label>
+                <label><i class="fa-solid fa-envelope" ></i> Email</label>
                 <input
                     type="email"
                     name="email"
@@ -38,7 +38,7 @@
             </div>
 
             <div class="auth-field">
-                <label> Parolă</label>
+                <label><i class="fa-solid fa-lock"></i> Parolă</label>
                 <input
                     type="password"
                     name="password"

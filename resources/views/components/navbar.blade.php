@@ -14,7 +14,7 @@
         <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us</a></li>
 
         @auth
-            <li><a href="#" style="color:#e91e8c; font-weight:600">👤 {{ Auth::user()->name }}</a></li>
+            <li><a href="#" style="color:#e91e8c; font-weight:600"><i class="fa-solid fa-user"></i> {{ Auth::user()->name }}</a></li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
                     @csrf

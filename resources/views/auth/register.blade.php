@@ -19,7 +19,7 @@
 
         @if($errors->any())
             <div class="auth-error">
-                {{ $errors->first() }}
+                <i class="fa-solid fa-circle-exclamation"></i> {{ $errors->first() }}
             </div>
         @endif
 
@@ -27,7 +27,7 @@
             @csrf
 
             <div class="auth-field">
-                <label>👤 Nume complet</label>
+                <label><i class="fa-solid fa-user"></i> Nume complet</label>
                 <input
                     type="text"
                     name="name"
@@ -38,7 +38,7 @@
             </div>
 
             <div class="auth-field">
-                <label>📧 Email</label>
+                <label><i class="fa-solid fa-envelope"></i> Email</label>
                 <input
                     type="email"
                     name="email"
@@ -49,7 +49,7 @@
             </div>
 
             <div class="auth-field">
-                <label>🔒 Parolă</label>
+                <label><i class="fa-solid fa-lock"></i> Parolă</label>
                 <input
                     type="password"
                     name="password"
@@ -59,7 +59,7 @@
             </div>
 
             <div class="auth-field">
-                <label>🔒 Confirmă parola</label>
+                <label><i class="fa-solid fa-shield-halved"></i> Confirmă parola</label>
                 <input
                     type="password"
                     name="password_confirmation"

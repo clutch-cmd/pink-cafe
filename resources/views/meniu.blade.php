@@ -18,15 +18,15 @@
     {{-- BAUTURI CALDE --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <i class="fa-solid fa-mug-saucer" style="color: #e91e63; margin-right: 10px;"></i> Băuturi Calde
+            <span class="meniu-icon"><i class="fa-solid fa-mug-saucer"></i></span> Băuturi Calde
         </h2>
         <div class="meniu-grid">
             @foreach($bauturiCalde as $produs)
                 <div class="meniu-item" onclick="openModal({{ $produs->id }})">
-                    <span class="meniu-item-name">{{ $produs->nume }}</span>
+                    <span class="meniu-item-name">{!! $produs->nume !!}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                     </div>
                 </div>
             @endforeach
@@ -36,15 +36,15 @@
     {{-- COCKTAILURI --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <i class="fa-solid fa-glass-martini-alt" style="color: #e91e63; margin-right: 10px;"></i> Cocktailuri
+            <span class="meniu-icon"><i class="fa-solid fa-glass-martini-alt"></i></span> Cocktailuri
         </h2>
         <div class="meniu-grid">
             @foreach($cocktailuri as $produs)
                 <div class="meniu-item" onclick="openModal({{ $produs->id }})">
-                    <span class="meniu-item-name">{{ $produs->nume }}</span>
+                    <span class="meniu-item-name">{!! $produs->nume !!}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                     </div>
                 </div>
             @endforeach
@@ -54,15 +54,15 @@
     {{-- LEMONADES --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <i class="fa-solid fa-droplet" style="color: #e91e63; margin-right: 10px;"></i> Fresh Lemonades
+            <span class="meniu-icon"><i class="fa-solid fa-droplet"></i></span> Fresh Lemonades
         </h2>
         <div class="meniu-grid">
             @foreach($lemonades as $produs)
                 <div class="meniu-item" onclick="openModal({{ $produs->id }})">
-                    <span class="meniu-item-name">{{ $produs->nume }}</span>
+                    <span class="meniu-item-name">{!! $produs->nume !!}</span>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                     </div>
                 </div>
             @endforeach
@@ -72,21 +72,38 @@
     {{-- DESERTURI --}}
     <div class="meniu-section">
         <h2 class="meniu-category-title">
-            <i class="fa-solid fa-cake-candles" style="color: #e91e63; margin-right: 10px;"></i> Deserturi
-    </h2>
+            <span class="meniu-icon"><i class="fa-solid fa-cake-candles"></i></span> Deserturi
         </h2>
         <div class="meniu-grid meniu-grid-2">
             @foreach($deserturi as $produs)
                 <div class="meniu-item meniu-item-desert" onclick="openModal({{ $produs->id }})">
                     <div class="meniu-item-desert-info">
-                        <span class="meniu-item-name">{{ $produs->nume }}</span>
+                        <span class="meniu-item-name">{!! $produs->nume !!}</span>
                         @if($produs->alergeni)
                             <span class="meniu-item-alergeni">{{ $produs->alergeni }}</span>
                         @endif
                     </div>
                     <div class="meniu-item-right">
                         <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
-                        <i class="fa-solid fa-circle-info" style="color: #e91e63; margin-left: 8px; font-size: 14px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- INGHETATA --}}
+    <div class="meniu-section">
+        <h2 class="meniu-category-title">
+            <span class="meniu-icon"><i class="fa-solid fa-ice-cream"></i></span> Înghețată
+        </h2>
+        <div class="meniu-grid">
+            @foreach($inghetata as $produs)
+                <div class="meniu-item" onclick="openModal({{ $produs->id }})">
+                    <span class="meniu-item-name">{!! $produs->nume !!}</span>
+                    <div class="meniu-item-right">
+                        <span class="meniu-item-pret">{{ number_format($produs->pret, 0) }} lei</span>
+                        <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                     </div>
                 </div>
             @endforeach
@@ -117,7 +134,7 @@
                 <p id="modalIngrediente"></p>
             </div>
             <div class="modal-alergeni" id="modalAlergeniSection">
-                <span class="modal-alergeni-icon">⚠️</span>
+                <i class="fa-solid fa-triangle-exclamation" style="color: rgb(255, 212, 59);"></i>
                 <div>
                     <strong>Alergeni</strong>
                     <p id="modalAlergeni"></p>
@@ -131,7 +148,13 @@
 {{-- DATE PRODUSE PENTRU JS --}}
 <script>
 const produse = {
-    @foreach(array_merge($bauturiCalde->all(), $cocktailuri->all(), $lemonades->all(), $deserturi->all()) as $produs)
+    @foreach(array_merge(
+        $bauturiCalde->all(),
+        $cocktailuri->all(),
+        $lemonades->all(),
+        $deserturi->all(),
+        $inghetata->all()
+    ) as $produs)
     {{ $produs->id }}: {
         nume: "{{ addslashes($produs->nume) }}",
         pret: {{ $produs->pret }},
@@ -142,35 +165,32 @@ const produse = {
     },
     @endforeach
 };
+
 const categorieLabel = {
     'bauturi_calde': 'Băuturi Calde',
     'cocktailuri': 'Cocktailuri',
     'lemonades': 'Fresh Lemonades',
-    'deserturi': 'Deserturi'
+    'deserturi': 'Deserturi',
+    'inghetata': 'Înghețată'
 };
 
-// Aici am schimbat emoji-urile cu iconițele Font Awesome
 const categorieIconHTML = {
     'bauturi_calde': '<i class="fa-solid fa-mug-saucer"></i>',
     'cocktailuri': '<i class="fa-solid fa-glass-martini-alt"></i>',
     'lemonades': '<i class="fa-solid fa-droplet"></i>',
-    'deserturi': '<i class="fa-solid fa-cake-candles"></i>'
+    'deserturi': '<i class="fa-solid fa-cake-candles"></i>',
+    'inghetata': '<i class="fa-solid fa-ice-cream"></i>'
 };
 
 function openModal(id) {
     const p = produse[id];
     if (!p) return;
 
-    // Folosim .innerHTML în loc de .textContent pentru nume ca să reparăm simbolul "&"
     document.getElementById('modalTitle').innerHTML = p.nume;
-    
-    // Folosim .innerHTML pentru a insera tag-ul <i> de Font Awesome
     document.getElementById('modalIcon').innerHTML = categorieIconHTML[p.categorie];
-    
     document.getElementById('modalCategorie').textContent = categorieLabel[p.categorie].toUpperCase();
     document.getElementById('modalPret').textContent = p.pret + ' lei';
 
-    // Reparăm și restul câmpurilor pentru orice eventualitate
     if (p.descriere) {
         document.getElementById('modalDescriere').innerHTML = p.descriere;
         document.getElementById('modalDescriereSection').style.display = 'block';
@@ -186,7 +206,7 @@ function openModal(id) {
     }
 
     if (p.alergeni) {
-        document.getElementById('modalAlergeni').innerHTML = p.alergeni;
+        document.getElementById('modalAlergeni').textContent = p.alergeni;
         document.getElementById('modalAlergeniSection').style.display = 'flex';
     } else {
         document.getElementById('modalAlergeniSection').style.display = 'none';
