@@ -58,17 +58,17 @@
         <p>PINK CAFÉ se află în centrul orașului Cahul, pe Calea Republicii 24a, nr. 4. Suntem ușor accesibili din orice punct al orașului.</p>
         <div class="findus-buttons">
             <a href="https://maps.google.com/?q=Calea+Republicii+24a+Cahul" target="_blank" class="btn-maps">
-                📍 Deschide în Google Maps
+                 Deschide în Google Maps
             </a>
             <a href="tel:079043047" class="btn-call">
-                📞 Sună-ne: 0790 43 047
+                 Sună-ne: 0790 43 047
             </a>
         </div>
     </div>
 
     {{-- BANNER --}}
     <div class="findus-banner">
-        <h2>Te așteptăm cu drag! 💖</h2>
+        <h2>Te așteptăm cu drag! </h2>
         <p>Vino să experimentezi atmosfera unică a PINK CAFÉ și să savurezi cele mai delicioase deserturi și băuturi din Cahul</p>
     </div>
 

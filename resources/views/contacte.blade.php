@@ -41,10 +41,10 @@
             <div class="contacte-card-icon">📱</div>
             <h3>Social Media</h3>
             <a href="https://instagram.com/pink_cafe_cahul" target="_blank" class="social-link">
-                <span>📸</span> @pink_cafe_cahul
+                <span>Instagram:</span> @pink_cafe_cahul
             </a>
             <a href="https://tiktok.com/@pink_cafe_cahul" target="_blank" class="social-link">
-                <span>🎵</span> @pink_cafe_cahul
+                <span>TikTok:</span> @pink_cafe_cahul
             </a>
         </div>
 
