@@ -14,15 +14,33 @@
         <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us</a></li>
 
         @auth
-            <li><a href="#" style="color:#e91e8c; font-weight:600"><i class="fa-solid fa-user"></i> {{ Auth::user()->name }}</a></li>
+            @if(Auth::user()->rol === 'admin')
+                <li>
+                    <a href="{{ route('admin.dashboard') }}" style="color:#e91e8c; font-weight:600">
+                        <i class="fa-solid fa-gears"></i> Admin
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="#" style="color:#e91e8c; font-weight:600">
+                        <i class="fa-solid fa-circle-user"></i> {{ Auth::user()->name }}
+                    </a>
+                </li>
+            @endif
             <li>
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
                     @csrf
-                    <button type="submit" class="navbar-logout">Logout</button>
+                    <button type="submit" class="navbar-logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </button>
                 </form>
             </li>
         @else
-            <li><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a></li>
+            <li>
+                <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                </a>
+            </li>
         @endauth
     </ul>
 </nav>

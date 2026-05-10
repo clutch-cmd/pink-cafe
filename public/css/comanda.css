@@ -1,0 +1,535 @@
+/* ===== COMANDA PAGE ===== */
+.comanda-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== HEADER ===== */
+.comanda-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.comanda-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a2a;
+    margin-bottom: 8px;
+}
+
+.comanda-header p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* ===== STEPS ===== */
+.comanda-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 10px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #aaa;
+}
+
+.step.active {
+    color: #e91e8c;
+}
+
+.step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-circle {
+    background: #e91e8c;
+    color: white;
+}
+
+.step-line {
+    width: 80px;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 0 12px;
+}
+
+/* ===== ERROR ===== */
+.comanda-error {
+    background: #fff0f3;
+    border: 1px solid #ffb3c1;
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: #c0392b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ===== LAYOUT ===== */
+.comanda-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ===== LEFT ===== */
+.comanda-left {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.comanda-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a2a;
+    margin-bottom: 20px;
+}
+
+/* ===== TABS ===== */
+.comanda-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 8px 18px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 50px;
+    background: white;
+    color: #555;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    border-color: #e91e8c;
+    color: #e91e8c;
+}
+
+.tab-btn.active {
+    background: #e91e8c;
+    border-color: #e91e8c;
+    color: white;
+}
+
+/* ===== PRODUCTS ===== */
+.comanda-products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.comanda-product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fdf0f7;
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: background 0.2s ease;
+}
+
+.comanda-product-item:hover {
+    background: #fce4f3;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.product-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1a2a;
+}
+
+.product-pret {
+    font-size: 0.85rem;
+    color: #e91e8c;
+    font-weight: 600;
+}
+
+.btn-add-product {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #e91e8c;
+    color: white;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.btn-add-product:hover {
+    background: #c2185b;
+    transform: scale(1.1);
+}
+
+/* ===== BUTOANE STEP ===== */
+.btn-continua {
+    width: 100%;
+    padding: 16px;
+    background: #1a1a2a;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-continua:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* ===== FORM LIVRARE ===== */
+.comanda-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.comanda-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a2a;
+}
+
+.comanda-field input,
+.comanda-field textarea {
+    padding: 14px 16px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+}
+
+.comanda-field input:focus,
+.comanda-field textarea:focus {
+    border-color: #e91e8c;
+    box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1);
+}
+
+.comanda-field textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.comanda-step2-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-inapoi {
+    flex: 1;
+    padding: 16px;
+    background: #f3f4f6;
+    color: #555;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-inapoi:hover {
+    background: #e5e7eb;
+}
+
+.btn-plaseaza {
+    flex: 2;
+    padding: 16px;
+    background: #1a1a2a;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-plaseaza:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* ===== COS ===== */
+.comanda-right {
+    position: sticky;
+    top: 100px;
+}
+
+.cos-container {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.cos-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2a;
+    margin-bottom: 16px;
+}
+
+.cos-gol {
+    text-align: center;
+    padding: 30px 0;
+    color: #aaa;
+}
+
+.cos-gol-icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.cos-gol p {
+    font-size: 0.9rem;
+}
+
+/* ===== COS ITEM ===== */
+.cos-item {
+    background: #fdf0f7;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.cos-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 8px;
+}
+
+.cos-item-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1a2a;
+}
+
+.cos-item-pret {
+    font-size: 0.8rem;
+    color: #e91e8c;
+}
+
+.cos-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cos-item-controls button {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1.5px solid #e91e8c;
+    background: white;
+    color: #e91e8c;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cos-item-controls button:hover {
+    background: #e91e8c;
+    color: white;
+}
+
+.cos-item-controls span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cos-delete {
+    margin-left: auto;
+    border-color: #ff4444 !important;
+    color: #ff4444 !important;
+}
+
+.cos-delete:hover {
+    background: #ff4444 !important;
+    color: white !important;
+}
+
+/* ===== TOTAL ===== */
+.cos-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1.5px solid #e5e7eb;
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a2a;
+}
+
+.cos-total-pret {
+    font-size: 1.3rem;
+    color: #e91e8c;
+    font-weight: 800;
+}
+
+.cos-info {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* ===== SUCCES PAGE ===== */
+.succes-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 60px;
+}
+
+.succes-card {
+    background: white;
+    border-radius: 24px;
+    padding: 50px 40px;
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.succes-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.succes-card h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a2a;
+    margin-bottom: 12px;
+}
+
+.succes-card p {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.succes-detalii {
+    background: #fdf0f7;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.succes-detalii h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2a;
+    margin-bottom: 16px;
+}
+
+.succes-produs {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.succes-total {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #e91e8c;
+    text-align: right;
+}
+
+.btn-acasa {
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    color: white;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-acasa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(233, 30, 140, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .comanda-page {
+        padding: 90px 16px 40px;
+    }
+
+    .comanda-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .comanda-right {
+        position: static;
+        order: -1;
+    }
+
+    .comanda-products {
+        grid-template-columns: 1fr;
+    }
+}
