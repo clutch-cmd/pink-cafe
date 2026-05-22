@@ -16,7 +16,7 @@
     {{-- HERO SECTION --}}
     <section class="hero">
         <div class="hero-content">
-            <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe Logo" class="hero-logo">
+            
             <h1 class="hero-title">PINK CAFÉ</h1>
             <p class="hero-subtitle">Locul unde se întâlnește stilul modern cu deserturile unice și delicioase</p>
             <div class="hero-buttons">

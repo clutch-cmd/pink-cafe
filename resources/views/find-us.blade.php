@@ -18,21 +18,21 @@
     <div class="findus-info-grid">
 
         <div class="findus-info-card">
-            <div class="findus-info-icon">📍</div>
+            <div class="findus-info-icon"><i class="fa-solid fa-location-dot footer-contact-icon"></i></div>
             <h3>Adresa</h3>
             <p>Calea Republicii 24a, nr. 4</p>
             <p>Cahul, MD</p>
         </div>
 
         <div class="findus-info-card">
-            <div class="findus-info-icon">🕐</div>
+            <div class="findus-info-icon"><i class="fa-regular fa-clock"></i></div>
             <h3>Program</h3>
             <p>Luni - Duminică</p>
             <p class="findus-hours">07:00 - 22:00</p>
         </div>
 
         <div class="findus-info-card">
-            <div class="findus-info-icon">🧭</div>
+            <div class="findus-info-icon"><i class="fa-regular fa-compass"></i></div>
             <h3>Navigație</h3>
             <p>Ușor accesibil din centrul orașului</p>
         </div>

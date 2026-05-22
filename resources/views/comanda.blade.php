@@ -72,9 +72,17 @@
                         </div>
                     @endforeach
 
-                    <button type="button" class="btn-continua" id="btnContinua" onclick="goToStep2()">
-                        Continuă la Informații Livrare <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    @guest
+                        <a href="{{ route('login') }}" class="btn-continua" style="display:block; text-align:center; text-decoration:none">
+                            <i class="fas fa-lock"></i> Autentifică-te pentru a comanda
+                        </a>
+                    @endguest
+
+                    @auth
+                        <button type="button" class="btn-continua" id="btnContinua" onclick="goToStep2()">
+                            Continuă la Informații Livrare
+                        </button>
+                    @endauth
                 </div>
 
                 {{-- STEP 2 — Informatii livrare --}}
@@ -131,9 +139,28 @@
                     </div>
 
                     <div class="cos-info">
-                        <p><i class="fa-solid fa-phone-volume"></i> Sau sună: <strong>0790 43 047</strong></p>
-                        <p><i class="fa-solid fa-truck-fast"></i> Livrare gratuită în Cahul pentru comenzi peste 100 lei</p>
+                @guest
+                    <div class="cos-auth-warning">
+                        <i class="fas fa-lock"></i>
+                        <p>Pentru a plasa o comandă este necesar să fii autentificat.</p>
                     </div>
+                @endguest
+
+                @auth
+                    <div class="cos-livrare-info">
+                        <p><i class="fas fa-phone"></i> Sau sună: <strong>0790 43 047</strong></p>
+                        <div class="cos-livrare-detalii">
+                            <div class="livrare-row" id="livrareRow">
+                                <i class="fas fa-truck"></i>
+                                <div>
+                                    <span id="livrareText">Livrare: <strong>calculare...</strong></span>
+                                    <small>Livrare gratuită pentru comenzi peste 200 lei</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endauth
+            </div>
                 </div>
             </div>
 
@@ -221,11 +248,28 @@ function updateCart() {
         totalPret.textContent = total + ' lei';
 
         if (btnPlaseaza) {
-            btnPlaseaza.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Plasează Comanda (${total} lei)`;
-        }
+        const livrare = total >= 200 ? 0 : 25;
+        const totalCuLivrare = total + livrare;
+        btnPlaseaza.innerHTML = `<i class="fas fa-shopping-cart"></i> Plasează Comanda (${totalCuLivrare} lei)`;
+    }
     } else {
         cosGol.classList.remove('hidden');
         cosTotal.classList.add('hidden');
+    }
+    const livrareRow = document.getElementById('livrareRow');
+    const livrareText = document.getElementById('livrareText');
+
+    if (livrareRow && livrareText) {
+        if (!hasItems) {
+            livrareText.innerHTML = 'Livrare: <strong>—</strong>';
+        } else if (total >= 200) {
+            livrareText.innerHTML = 'Livrare: <strong style="color:#22c55e">Gratuită 🎉</strong>';
+            livrareRow.style.background = '#f0fdf4';
+        } else {
+            const ramane = 200 - total;
+            livrareText.innerHTML = `Livrare: <strong>25 lei</strong> <span style="color:#e91e8c; font-size:0.78rem">(mai adaugă ${ramane} lei pentru livrare gratuită)</span>`;
+            livrareRow.style.background = '#fff8f0';
+        }
     }
 }
 
@@ -256,5 +300,6 @@ function goToStep1() {
     document.getElementById('step1indicator').classList.add('active');
     window.scrollTo(0, 0);
 }
+
 </script>
 @endsection

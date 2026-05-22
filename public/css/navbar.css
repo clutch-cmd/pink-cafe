@@ -43,17 +43,17 @@
 }
 
 .navbar-logo {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 /* Titlu — negru pe toate paginile */
 .navbar-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1a1a1a;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e91e8c;
 }
 
 /* ========== LINKURI DESKTOP ========== */

@@ -175,11 +175,11 @@ const categorieLabel = {
 };
 
 const categorieIconHTML = {
-    'bauturi_calde': '<i class="fa-solid fa-mug-saucer"></i>',
-    'cocktailuri': '<i class="fa-solid fa-glass-martini-alt"></i>',
-    'lemonades': '<i class="fa-solid fa-droplet"></i>',
-    'deserturi': '<i class="fa-solid fa-cake-candles"></i>',
-    'inghetata': '<i class="fa-solid fa-ice-cream"></i>'
+    'bauturi_calde': '<i class="fa-solid fa-mug-saucer" style="color: rgb(255, 255, 255);"></i>',
+    'cocktailuri': '<i class="fa-solid fa-glass-martini-alt" style="color: rgb(255, 255, 255);"></i>',
+    'lemonades': '<i class="fa-solid fa-droplet" style="color: rgb(255, 255, 255);"></i>',
+    'deserturi': '<i class="fa-solid fa-cake-candles" style="color: rgb(255, 255, 255);"></i>',
+    'inghetata': '<i class="fa-solid fa-ice-cream" style="color: rgb(255, 255, 255);"></i>'
 };
 
 function openModal(id) {
