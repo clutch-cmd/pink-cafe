@@ -46,14 +46,18 @@
                 <input type="text" name="ingrediente" placeholder="Ingrediente principale">
             </div>
         </div>
-        <button type="submit" class="btn-adauga">+ Adaugă Produs</button>
+        <button type="submit" class="btn-adauga">
+            <i class="fas fa-plus"></i> Adaugă Produs
+        </button>
     </form>
 </div>
 
 {{-- Lista produse --}}
 <div class="admin-card">
     <h2>Produse Existente ({{ $produse->count() }})</h2>
-    <table class="admin-table">
+
+    {{-- TABEL DESKTOP --}}
+    <table class="admin-table desktop-only">
         <thead>
             <tr>
                 <th>#</th>
@@ -75,7 +79,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-sterge">
-                                    <i class="fa-solid fa-trash-can"></i> Șterge
+                                <i class="fas fa-trash"></i> Șterge
                             </button>
                         </form>
                     </td>
@@ -83,6 +87,52 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- CARDURI MOBIL --}}
+    <div class="mobile-only">
+        @foreach($produse as $produs)
+            <div class="mobile-card">
+                <div class="mobile-card-header">
+                    <span class="mobile-card-id">#{{ $produs->id }}</span>
+                    <span class="cat-badge">{{ $produs->categorie }}</span>
+                </div>
+
+                <div class="mobile-card-body">
+                    <div class="mobile-card-row">
+                        <i class="fas fa-utensils"></i>
+                        <span><strong>{{ $produs->nume }}</strong></span>
+                    </div>
+                    <div class="mobile-card-row">
+                        <i class="fas fa-tag"></i>
+                        <span style="color:#e91e8c; font-weight:700">{{ $produs->pret }} lei</span>
+                    </div>
+                    @if($produs->descriere)
+                        <div class="mobile-card-row">
+                            <i class="fas fa-info-circle"></i>
+                            <span>{{ $produs->descriere }}</span>
+                        </div>
+                    @endif
+                    @if($produs->alergeni)
+                        <div class="mobile-card-row">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span style="color:#b45309">{{ $produs->alergeni }}</span>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="mobile-card-footer">
+                    <form method="POST" action="{{ route('admin.produse.sterge', $produs->id) }}" onsubmit="return confirm('Ștergi produsul?')" style="width:100%">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-sterge" style="width:100%">
+                            <i class="fas fa-trash"></i> Șterge Produs
+                        </button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
 </div>
 
 @endsection

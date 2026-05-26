@@ -9,52 +9,75 @@
 </head>
 <body class="admin-body">
 
-    <div class="admin-wrapper">
+<div class="admin-wrapper">
 
-        {{-- SIDEBAR --}}
-        <aside class="admin-sidebar">
-            <div class="admin-logo">
-                <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe">
-                <span>PINK CAFÉ</span>
+    {{-- OVERLAY mobil --}}
+    <div class="admin-overlay" id="adminOverlay" onclick="closeSidebar()"></div>
+
+    {{-- SIDEBAR --}}
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="admin-logo">
+            <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe">
+            <span>Pink Cafe</span>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-chart-bar"></i> Dashboard
+            </a>
+            <a href="{{ route('admin.comenzi') }}" class="{{ request()->routeIs('admin.comenzi') ? 'active' : '' }}">
+                <i class="fas fa-list"></i> Comenzi
+            </a>
+            <a href="{{ route('admin.produse') }}" class="{{ request()->routeIs('admin.produse') ? 'active' : '' }}">
+                <i class="fas fa-utensils"></i> Produse
+            </a>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+            <a href="{{ route('home') }}"><i class="fas fa-arrow-left"></i> Site</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </form>
+        </div>
+    </aside>
+
+    {{-- MAIN --}}
+    <main class="admin-main">
+
+        {{-- TOPBAR MOBIL --}}
+        <div class="admin-topbar">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h2>Pink Cafe Admin</h2>
+            <a href="{{ route('home') }}" style="color:#e91e8c; font-size:0.85rem">
+                <i class="fas fa-external-link-alt"></i> Site
+            </a>
+        </div>
+
+        @if(session('success'))
+            <div class="admin-success">
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
             </div>
+        @endif
 
-            <nav class="admin-nav">
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <i class="fa-solid fa-chart-pie"></i> Dashboard
-                </a>
-                <a href="{{ route('admin.comenzi') }}" class="{{ request()->routeIs('admin.comenzi') ? 'active' : '' }}">
-                    <i class="fa-solid fa-box-open"></i> Comenzi
-                </a>
-                <a href="{{ route('admin.produse') }}" class="{{ request()->routeIs('admin.produse') ? 'active' : '' }}">
-                    <i class="fa-solid fa-cookie-bite"></i> Produse
-                </a>
-            </nav>
+        @yield('content')
+    </main>
 
-            <div class="admin-sidebar-footer">
-                <a href="{{ route('home') }}" class="btn-back-site">
-                    <i class="fa-solid fa-arrow-left"></i> Înapoi la Site
-                </a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn-logout-admin">
-                        <i class="fa-solid fa-power-off"></i> Logout
-                    </button>
-                </form>
-            </div>
-        </aside>
+</div>
 
-        {{-- CONTENT --}}
-        <main class="admin-main">
-            @if(session('success'))
-                <div class="admin-success">
-                    <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
-                </div>
-            @endif
+<script>
+function openSidebar() {
+    document.getElementById('adminSidebar').classList.add('open');
+    document.getElementById('adminOverlay').classList.add('active');
+}
 
-            @yield('content')
-        </main>
-
-    </div>
+function closeSidebar() {
+    document.getElementById('adminSidebar').classList.remove('open');
+    document.getElementById('adminOverlay').classList.remove('active');
+}
+</script>
 
 </body>
 </html>
