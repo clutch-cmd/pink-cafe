@@ -31,6 +31,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/produse/{id}', [App\Http\Controllers\AdminController::class, 'stergeProdus'])->name('produse.sterge');
     Route::put('/produse/{id}', [App\Http\Controllers\AdminController::class, 'editeazaProdus'])->name('produse.editeaza');
 });
-Route::post('/comanda', [ComandaController::class, 'store'])
-    ->name('comanda.store')
-    ->middleware('throttle:5,1'); // max 5 comenzi pe minut
+Route::post('/comanda', [App\Http\Controllers\ComandaController::class, 'store'])->name('comanda.store')->middleware('throttle:5,1');
