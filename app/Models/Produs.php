@@ -9,6 +9,6 @@ class Produs extends Model
     protected $table = 'produse';
     
     protected $fillable = [
-    'nume', 'pret', 'categorie', 'descriere', 'ingrediente', 'alergeni'
+    'nume', 'pret', 'categorie', 'descriere', 'ingrediente', 'alergeni', 'imagine'
 ];
 }

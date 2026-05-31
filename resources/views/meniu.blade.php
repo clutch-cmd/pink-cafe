@@ -117,7 +117,14 @@
     <div class="modal-box" onclick="event.stopPropagation()">
         <div class="modal-header" id="modalHeader">
             <button class="modal-close" onclick="closeModal()">✕</button>
+
+            {{-- Icon categorie (când nu e imagine) --}}
             <div class="modal-header-icon" id="modalIcon"></div>
+
+            {{-- Imagine produs (când există) --}}
+            <img id="modalImagine" src="" alt=""
+                 style="width:110px; height:110px; border-radius:50%; object-fit:cover; margin:10px auto; display:none; border:3px solid rgba(255,255,255,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+
             <h3 class="modal-title" id="modalTitle"></h3>
         </div>
         <div class="modal-body">
@@ -134,17 +141,16 @@
                 <p id="modalIngrediente"></p>
             </div>
             <div class="modal-alergeni" id="modalAlergeniSection">
-                <i class="fa-solid fa-triangle-exclamation" style="color: rgb(255, 212, 59);"></i>
+                <span class="modal-alergeni-icon">⚠️</span>
                 <div>
                     <strong>Alergeni</strong>
                     <p id="modalAlergeni"></p>
                 </div>
             </div>
-           
+            <button class="modal-btn-close" onclick="closeModal()">Închide</button>
         </div>
     </div>
 </div>
-
 {{-- DATE PRODUSE PENTRU JS --}}
 <script>
 const produse = {
@@ -161,7 +167,8 @@ const produse = {
         categorie: "{{ $produs->categorie }}",
         descriere: "{{ addslashes($produs->descriere ?? '') }}",
         ingrediente: "{{ addslashes($produs->ingrediente ?? '') }}",
-        alergeni: "{{ addslashes($produs->alergeni ?? '') }}"
+        alergeni: "{{ addslashes($produs->alergeni ?? '') }}",
+        imagine: "{{ $produs->imagine ?? '' }}"
     },
     @endforeach
 };
@@ -186,20 +193,34 @@ function openModal(id) {
     const p = produse[id];
     if (!p) return;
 
-    document.getElementById('modalTitle').innerHTML = p.nume;
-    document.getElementById('modalIcon').innerHTML = categorieIconHTML[p.categorie];
+    document.getElementById('modalTitle').textContent = p.nume;
     document.getElementById('modalCategorie').textContent = categorieLabel[p.categorie].toUpperCase();
     document.getElementById('modalPret').textContent = p.pret + ' lei';
 
+    // Imagine sau icon
+    const modalImagine = document.getElementById('modalImagine');
+    const modalIcon = document.getElementById('modalIcon');
+
+    if (p.imagine) {
+        modalImagine.src = '/images/produse/' + p.imagine;
+        modalImagine.alt = p.nume;
+        modalImagine.style.display = 'block';
+        modalIcon.style.display = 'none';
+    } else {
+        modalImagine.style.display = 'none';
+        modalIcon.style.display = 'block';
+        modalIcon.textContent = categorieIcon[p.categorie];
+    }
+
     if (p.descriere) {
-        document.getElementById('modalDescriere').innerHTML = p.descriere;
+        document.getElementById('modalDescriere').textContent = p.descriere;
         document.getElementById('modalDescriereSection').style.display = 'block';
     } else {
         document.getElementById('modalDescriereSection').style.display = 'none';
     }
 
     if (p.ingrediente) {
-        document.getElementById('modalIngrediente').innerHTML = p.ingrediente;
+        document.getElementById('modalIngrediente').textContent = p.ingrediente;
         document.getElementById('modalIngredienteSection').style.display = 'block';
     } else {
         document.getElementById('modalIngredienteSection').style.display = 'none';
@@ -214,11 +235,6 @@ function openModal(id) {
 
     document.getElementById('modalOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', (e) => {
