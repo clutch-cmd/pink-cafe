@@ -10,8 +10,7 @@
     <ul class="navbar-links" id="navbarLinks">
         <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
         <li><a href="{{ route('meniu') }}" class="{{ request()->routeIs('meniu') ? 'active' : '' }}">Meniu</a></li>
-        <li><a href="{{ route('contacte') }}" class="{{ request()->routeIs('contacte') ? 'active' : '' }}">Contacte</a></li>
-        <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us</a></li>
+        <li><a href="{{ route('find-us') }}" class="{{ request()->routeIs('find-us') ? 'active' : '' }}">Find Us & Contacte</a></li>
 
         @auth
             @if(Auth::user()->rol === 'admin')

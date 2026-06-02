@@ -30,19 +30,48 @@
         </div>
     </section>
 
-    {{-- GALERIE SECTION --}}
+{{-- GALERIE SLIDER PREMIUM SECTION --}}
     <section class="gallery">
-        <h2 class="section-title">Galeria Noastră</h2>
-        <div class="gallery-grid">
-            <div class="gallery-card" onclick="openGalleryModal(this.querySelector('img').src)">
-                <img src="{{ asset('images/interior1.jpg') }}" alt="Pink Cafe Interior">
+        <h2 class="section-title">Produsele Noastre</h2>
+        
+        <div class="slider-container">
+            <!-- Săgeată Stânga -->
+            <button class="slider-arrow prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide-item active">
+                    <img src="{{ asset('images/aperol_spritz.jpg') }}" alt="Aperol Spritz" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Aperol Spritz</div>
+                </div>
+
+                <div class="slide-item">
+                    <img src="{{ asset('images/malibu.jpg') }}" alt="Malibu" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Malibu</div>
+                </div>
+
+                <div class="slide-item">
+                    <img src="{{ asset('images/bounty_coffee.jpg') }}" alt="Bounty Coffee" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Bounty Coffee</div>
+                </div>
+
+                <div class="slide-item">
+                    <img src="{{ asset('images/tea_fruit.jpg') }}" alt="Tea Fruit Symphony" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Tea Fruit Symphony</div>
+                </div>
+
+                <div class="slide-item">
+                    <img src="{{ asset('images/bubble_gum.jpg') }}" alt="Buble Gum" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Buble Gum</div>
+                </div>
+
+                <div class="slide-item">
+                    <img src="{{ asset('images/fresh_grapefruit.jpg') }}" alt="Fresh Grapefruit" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Fresh Grapefruit</div>
+                </div>
             </div>
-            <div class="gallery-card" onclick="openGalleryModal(this.querySelector('img').src)">
-                <img src="{{ asset('images/interior2.jpg') }}" alt="Pink Cafe Ambiance">
-            </div>
-            <div class="gallery-card" onclick="openGalleryModal(this.querySelector('img').src)">
-                <img src="{{ asset('images/interior3.jpg') }}" alt="Pink Cafe Space">
-            </div>
+
+            <!-- Săgeată Dreapta -->
+            <button class="slider-arrow next-btn" onclick="moveSlide(1)">&#10095;</button>
         </div>
     </section>
 
@@ -52,25 +81,70 @@
         <img class="gallery-modal-content" id="fullImage">
     </div>
 
-    {{-- SCRIPT MODAL GALERIE --}}
+    {{-- SCRIPT PENTRU CONTROL SLIDER & MODAL --}}
     <script>
+        let currentIndex = 0;
+        let autoSlideInterval;
+        let slides = [];
+        let totalSlides = 0;
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev', 'next');
+                
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                } else if (index === (currentIndex - 1 + totalSlides) % totalSlides) {
+                    slide.classList.add('prev');
+                } else if (index === (currentIndex + 1) % totalSlides) {
+                    slide.classList.add('next');
+                }
+            });
+        }
+
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Modal Functions
         function openGalleryModal(src) {
             var modal = document.getElementById('galleryModal');
             var img = document.getElementById('fullImage');
             img.src = src;
             modal.classList.add('active');
         }
+        
         function closeGalleryModal() {
             var modal = document.getElementById('galleryModal');
             modal.classList.remove('active');
         }
-        // Previne închiderea când dai click pe imagine
+
         document.addEventListener('DOMContentLoaded', function() {
+            slides = document.querySelectorAll('.slide-item');
+            totalSlides = slides.length;
+            
+            updateCarousel();
+            startAutoSlide();
+
             var img = document.getElementById('fullImage');
             img.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
-            // Închide și la click pe X
+            
             document.querySelector('.gallery-close').addEventListener('click', function(event) {
                 event.stopPropagation();
                 closeGalleryModal();
@@ -108,5 +182,6 @@
 
         </div>
     </section>
+     
 
 @endsection

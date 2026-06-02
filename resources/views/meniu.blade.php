@@ -3,7 +3,7 @@
 @section('title', 'Meniu')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/meniu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/meniu.css') }}?v=2">
 @endsection
 
 @section('content')
@@ -112,45 +112,35 @@
 
 </div>
 
-{{-- MODAL --}}
+{{-- MODAL ADAPTABIL --}}
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
+        
         <div class="modal-header" id="modalHeader">
-            <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()">✕</button>
 
-            {{-- Icon categorie (când nu e imagine) --}}
-            <div class="modal-header-icon" id="modalIcon"></div>
-
-            {{-- Imagine produs (când există) --}}
-            <img id="modalImagine" src="" alt=""
-                 style="width:110px; height:110px; border-radius:50%; object-fit:cover; margin:10px auto; display:none; border:3px solid rgba(255,255,255,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-
-            <h3 class="modal-title" id="modalTitle"></h3>
-        </div>
+    <img id="modalImagine" src="" alt="" class="modal-product-img">
+    
+    <div id="modalIcon" class="modal-product-icon"></div>
+    <h3 class="modal-title" id="modalTitle"></h3>
+</div>
+        
         <div class="modal-body">
             <div class="modal-meta">
                 <span class="modal-categorie" id="modalCategorie"></span>
                 <span class="modal-pret" id="modalPret"></span>
             </div>
-            <div class="modal-section" id="modalDescriereSection">
-                <h4>Descriere</h4>
-                <p id="modalDescriere"></p>
-            </div>
-            <div class="modal-section" id="modalIngredienteSection">
-                <h4>Ingrediente</h4>
-                <p id="modalIngrediente"></p>
-            </div>
             <div class="modal-alergeni" id="modalAlergeniSection">
-                <span class="modal-alergeni-icon">⚠️</span>
+                <i class="fa-solid fa-triangle-exclamation" style="color: rgb(255, 212, 59);"></i>
                 <div>
                     <strong>Alergeni</strong>
                     <p id="modalAlergeni"></p>
                 </div>
             </div>
-            <button class="modal-btn-close" onclick="closeModal()">Închide</button>
         </div>
     </div>
 </div>
+
 {{-- DATE PRODUSE PENTRU JS --}}
 <script>
 const produse = {
@@ -165,10 +155,8 @@ const produse = {
         nume: "{{ addslashes($produs->nume) }}",
         pret: {{ $produs->pret }},
         categorie: "{{ $produs->categorie }}",
-        descriere: "{{ addslashes($produs->descriere ?? '') }}",
-        ingrediente: "{{ addslashes($produs->ingrediente ?? '') }}",
-        alergeni: "{{ addslashes($produs->alergeni ?? '') }}",
-        imagine: "{{ $produs->imagine ?? '' }}"
+        imagine: "{{ $produs->imagine ?? '' }}", 
+        alergeni: "{{ addslashes($produs->alergeni ?? '') }}"
     },
     @endforeach
 };
@@ -193,38 +181,35 @@ function openModal(id) {
     const p = produse[id];
     if (!p) return;
 
-    document.getElementById('modalTitle').textContent = p.nume;
-    document.getElementById('modalCategorie').textContent = categorieLabel[p.categorie].toUpperCase();
-    document.getElementById('modalPret').textContent = p.pret + ' lei';
-
-    // Imagine sau icon
+    const modalHeader = document.getElementById('modalHeader');
     const modalImagine = document.getElementById('modalImagine');
     const modalIcon = document.getElementById('modalIcon');
 
-    if (p.imagine) {
-        modalImagine.src = '/images/produse/' + p.imagine;
+    if (p.imagine && p.imagine.trim() !== '') {
+        // Înărcăm imaginea nativă în etichetă
+        modalImagine.src = '/images/' + p.imagine;
         modalImagine.alt = p.nume;
+        
+        // Comutăm afișajele
         modalImagine.style.display = 'block';
         modalIcon.style.display = 'none';
+        
+        // Schimbăm comportamentul header-ului
+        modalHeader.classList.remove('default-gradient');
+        modalHeader.classList.add('has-image-layout');
     } else {
+        // Resetăm pentru produsele simple cu iconiță
         modalImagine.style.display = 'none';
         modalIcon.style.display = 'block';
-        modalIcon.textContent = categorieIcon[p.categorie];
+        modalIcon.innerHTML = categorieIconHTML[p.categorie];
+        
+        modalHeader.classList.add('default-gradient');
+        modalHeader.classList.remove('has-image-layout');
     }
-
-    if (p.descriere) {
-        document.getElementById('modalDescriere').textContent = p.descriere;
-        document.getElementById('modalDescriereSection').style.display = 'block';
-    } else {
-        document.getElementById('modalDescriereSection').style.display = 'none';
-    }
-
-    if (p.ingrediente) {
-        document.getElementById('modalIngrediente').textContent = p.ingrediente;
-        document.getElementById('modalIngredienteSection').style.display = 'block';
-    } else {
-        document.getElementById('modalIngredienteSection').style.display = 'none';
-    }
+    
+    document.getElementById('modalTitle').innerHTML = p.nume;
+    document.getElementById('modalCategorie').textContent = categorieLabel[p.categorie].toUpperCase();
+    document.getElementById('modalPret').textContent = p.pret + ' lei';
 
     if (p.alergeni) {
         document.getElementById('modalAlergeni').textContent = p.alergeni;
@@ -235,6 +220,10 @@ function openModal(id) {
 
     document.getElementById('modalOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', (e) => {

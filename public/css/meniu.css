@@ -105,8 +105,6 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-style: italic;
-    font-weight: 700;
 }
 
 /* ===== DESERT ITEM ===== */
@@ -156,55 +154,98 @@
 }
 
 @keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ===== MODAL HEADER ===== */
+/* ===== CONSTRUCȚIA MODALULUI ELASTIC ===== */
+.modal-box {
+    background: white;
+    /* Strânge sau lărgește cutia exact după dimensiunea pozei din interior */
+    width: max-content; 
+    max-width: 90%; /* Siguranță pentru telefoane mobile */
+    min-width: 320px; /* Ca produsele fără poză să nu fie prea înghesuite */
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: modalIn 0.3s ease;
+}
+
+/* Header-ul devine un simplu container flexibil */
 .modal-header {
-    background: linear-gradient(135deg, #e91e8c, #9c27b0);
-    padding: 40px 24px 30px;
-    text-align: center;
     position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
+/* Starea implicită: Când nu există imagine (arată gradientul brandului) */
+.modal-header.default-gradient {
+    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    padding: 50px 24px 30px;
+}
+
+/* Imaginea de produs: se întinde complet pe lățimea determinată */
+.modal-product-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 280px; /* Împiedică imaginea să fie prea înaltă pe verticală */
+    object-fit: cover; /* Sau 'contain', în funcție de cum vrei să se decupeze */
+    display: block;
+}
+
+/* Iconița de rezervă */
+.modal-product-icon {
+    font-size: 4.5rem;
+    color: white;
+    margin-bottom: 15px;
+    display: none;
+}
+
+/* Titlul produsului așezat peste imagine sau dedesubt elegant */
+.modal-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 15px 0 0 0;
+    text-align: center;
+}
+
+/* Configurații pentru texte în funcție de prezența imaginii */
+.modal-header.default-gradient .modal-title {
+    color: white;
+}
+
+.modal-header.has-image-layout .modal-title {
+    color: #1a1a2a;
+    padding: 0 20px 10px 20px;
+}
+
+/* Butonul de închidere plutitor, vizibil pe orice fundal */
 .modal-close {
     position: absolute;
     top: 16px;
     right: 16px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
+    z-index: 10;
+    transition: background 0.2s;
 }
-
 .modal-close:hover {
-    background: rgba(255, 255, 255, 0.35);
-}
-
-.modal-header-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.modal-title {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 /* ===== MODAL BODY ===== */
@@ -262,8 +303,9 @@
 }
 
 .modal-alergeni-icon {
-    font-size: 1rem;
+    color: #d97706;
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .modal-alergeni strong {
@@ -280,7 +322,23 @@
 }
 
 /* ===== BUTON INCHIDE ===== */
+.modal-btn-close {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    margin-top: 8px;
+}
 
+.modal-btn-close:hover {
+    opacity: 0.9;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {

@@ -263,7 +263,7 @@ function updateCart() {
         if (!hasItems) {
             livrareText.innerHTML = 'Livrare: <strong>—</strong>';
         } else if (total >= 200) {
-            livrareText.innerHTML = 'Livrare: <strong style="color:#22c55e">Gratuită 🎉</strong>';
+            livrareText.innerHTML = 'Livrare: <strong style="color:#22c55e">Gratuită</strong>';
             livrareRow.style.background = '#f0fdf4';
         } else {
             const ramane = 200 - total;
