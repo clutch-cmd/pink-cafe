@@ -61,6 +61,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Imagine</th>
                 <th>Nume</th>
                 <th>Preț</th>
                 <th>Categorie</th>
@@ -71,6 +72,13 @@
             @foreach($produse as $produs)
                 <tr>
                     <td>{{ $produs->id }}</td>
+                    <td>
+                        @if($produs->imagine)
+                            <img src="{{ asset('images/' . $produs->imagine) }}" alt="{{ $produs->nume }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                        @else
+                            <span style="color: #999; font-size: 12px;">-</span>
+                        @endif
+                    </td>
                     <td>{{ $produs->nume }}</td>
                     <td>{{ $produs->pret }} lei</td>
                     <td><span class="cat-badge">{{ $produs->categorie }}</span></td>
@@ -96,6 +104,12 @@
                     <span class="mobile-card-id">#{{ $produs->id }}</span>
                     <span class="cat-badge">{{ $produs->categorie }}</span>
                 </div>
+
+                @if($produs->imagine)
+                <div style="width: 100%; height: 150px; margin-bottom: 12px; border-radius: 6px; overflow: hidden;">
+                    <img src="{{ asset('images/' . $produs->imagine) }}" alt="{{ $produs->nume }}" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                @endif
 
                 <div class="mobile-card-body">
                     <div class="mobile-card-row">

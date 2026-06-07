@@ -139,28 +139,28 @@
                     </div>
 
                     <div class="cos-info">
-                @guest
-                    <div class="cos-auth-warning">
-                        <i class="fas fa-lock"></i>
-                        <p>Pentru a plasa o comandă este necesar să fii autentificat.</p>
-                    </div>
-                @endguest
+                        @guest
+                            <div class="cos-auth-warning">
+                                <i class="fas fa-lock"></i>
+                                <p>Pentru a plasa o comandă este necesar să fii autentificat.</p>
+                            </div>
+                        @endguest
 
-                @auth
-                    <div class="cos-livrare-info">
-                        <p><i class="fas fa-phone"></i> Sau sună: <strong>0790 43 047</strong></p>
-                        <div class="cos-livrare-detalii">
-                            <div class="livrare-row" id="livrareRow">
-                                <i class="fas fa-truck"></i>
-                                <div>
-                                    <span id="livrareText">Livrare: <strong>calculare...</strong></span>
-                                    <small>Livrare gratuită pentru comenzi peste 200 lei</small>
+                        @auth
+                            <div class="cos-livrare-info">
+                                <p><i class="fas fa-phone"></i> Sau sună: <strong>0790 43 047</strong></p>
+                                <div class="cos-livrare-detalii">
+                                    <div class="livrare-row" id="livrareRow">
+                                        <i class="fas fa-truck"></i>
+                                        <div>
+                                            <span id="livrareText">Livrare: <strong>calculare...</strong></span>
+                                            <small>Livrare gratuită pentru comenzi peste 200 lei</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endauth
                     </div>
-                @endauth
-            </div>
                 </div>
             </div>
 

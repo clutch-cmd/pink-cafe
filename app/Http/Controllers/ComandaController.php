@@ -90,4 +90,63 @@ class ComandaController extends Controller
         $comanda = Comanda::with('produse')->findOrFail($id);
         return view('comanda-succes', compact('comanda'));
     }
+    public function proceseazaComanda(Request $request)
+    {
+        // 1. Validarea datelor (Ne asigurăm că data și ora sunt obligatorii și logice)
+        $request->validate([
+            'produs_id' => 'required|exists:produse,id',
+            'data_rezervare' => 'required|date',
+            'ora_rezervare' => 'required',
+            'numar_persoane' => 'nullable|integer|min:1|max:20',
+        ]);
+
+        // 2. Găsim produsul pentru a calcula prețul total
+        $produs = Produs::findOrFail($request->produs_id);
+        
+        // Calculăm prețul total cu opțiuni
+        $pret_total = $produs->pret;
+        
+        // Adăugăm prețul laptelui dacă e diferit de normal
+        if ($request->filled('optiune_lapte') && $request->optiune_lapte !== 'normal') {
+            $preturi_lapte = [
+                'migdale' => 15,
+                'ovaz' => 15,
+            ];
+            $pret_total += $preturi_lapte[$request->optiune_lapte] ?? 0;
+        }
+        
+        // Adăugăm prețurile toppingurilor
+        if ($request->has('toppings') && is_array($request->toppings)) {
+            $preturi_toppings = [
+                'frisca' => 10,
+                'sirop_vanilie' => 8,
+                'ciocolata' => 12,
+                'caramel' => 10,
+            ];
+            foreach ($request->toppings as $topping) {
+                $pret_total += $preturi_toppings[$topping] ?? 0;
+            }
+        }
+
+        // 3. Crearea unei înregistrări noi în tabelul 'comenzi'
+        $comanda = Comanda::create([
+            'produs_id' => $request->produs_id,
+            'optiune_lapte' => $request->optiune_lapte,
+            'toppings' => $request->has('toppings') ? json_encode($request->toppings) : null,
+            'data_rezervare' => $request->data_rezervare,
+            'ora_rezervare' => $request->ora_rezervare,
+            'numar_persoane' => $request->numar_persoane,
+            'mentiuni_speciale' => $request->mentiuni_speciale ?? $request->mentiuni,
+            'pret_total' => $pret_total,
+            'nume' => $request->nume ?? 'Rezervare',
+            'telefon' => $request->telefon ?? '',
+            'adresa' => $request->adresa ?? '',
+            'comentarii' => $request->comentarii ?? null,
+            'total' => $pret_total,
+            'status' => 'noua',
+        ]);
+
+        // 4. Redirecționarea clientului
+        return redirect()->back()->with('succes', 'Opțiunile și rezervarea au fost salvate! Continuăm spre finalizare.');
+    }
 }

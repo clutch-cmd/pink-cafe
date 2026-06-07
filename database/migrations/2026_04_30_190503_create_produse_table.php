@@ -15,12 +15,10 @@ return new class extends Migration
         $table->id();
         $table->string('nume');
         $table->decimal('pret', 8, 2);
-        $table->enum('categorie', [
-            'bauturi_calde',
-            'cocktailuri', 
-            'lemonades',
-            'deserturi'
-        ]);
+        $table->string('categorie');
+        $table->text('descriere');
+        $table->text('ingrediente');
+        $table->string('imagine')->nullable();
         $table->timestamps();
     });
 }

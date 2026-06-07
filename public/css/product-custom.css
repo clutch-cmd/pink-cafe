@@ -1,0 +1,419 @@
+       
+        /* ===== STILURI PAGINĂ PRODUS (GLASSMORPHISM) ===== */
+        .product-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Coloana Stângă: Imaginea */
+        .product-image-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .product-main-img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-fallback-icon {
+            font-size: 8rem;
+            color: #e91e8c;
+            padding: 60px 0;
+        }
+
+        /* Coloana Dreaptă: Detalii și Formulare */
+        .product-details-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(233, 30, 140, 0.05);
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a1a2a;
+            margin-bottom: 15px;
+        }
+
+        .product-price-box {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e91e8c;
+            margin-bottom: 25px;
+        }
+
+        /* Personalizator & Secțiuni */
+        .customizer-section, .reservation-section {
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            padding-top: 20px;
+            margin-top: 25px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a2a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Stiluri Opțiuni (Radio & Checkbox) */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .option-label:hover {
+            background: #fff;
+            border-color: rgba(233, 30, 140, 0.3);
+        }
+
+        .option-label input {
+            margin-right: 10px;
+            accent-color: #e91e8c;
+        }
+
+        .option-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .option-price {
+            font-weight: 600;
+            color: #e91e8c;
+        }
+
+        /* Formular Rezervare */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-control {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: #e91e8c;
+            background: #fff;
+        }
+
+        /* Alergeni box */
+        .alergeni-alert {
+            display: flex;
+            gap: 10px;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #b45309;
+        }
+
+        /* Buton Acțiune Principal */
+        .btn-action-order {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e91e8c, #9c27b0);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 140, 0.3);
+            transition: transform 0.2s, opacity 0.2s;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-action-order:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        /* ===== BUTON INAPOI LA MENIU ===== */
+        .back-to-menu-wrapper {
+            grid-column: 1 / -1; /* Face ca butonul să stea pe toată lățimea deasupra celor două coloane */
+            margin-bottom: -20px; /* Îl apropie frumos de blocurile de conținut */
+        }
+
+        .btn-back-menu {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1a1a2a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-back-menu:hover {
+            color: #e91e8c;
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateX(-4px); /* Efect discret de mișcare spre stânga la hover */
+            box-shadow: 0 4px 15px rgba(233, 30, 140, 0.1);
+        }
+        /* ===== PERSONALIZARE FLATPICKR PERFECȚIONATĂ (PINK CAFÉ) ===== */
+        .flatpickr-calendar {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 15px 35px rgba(233, 30, 140, 0.12) !important;
+            font-family: inherit !important;
+            padding: 10px !important; /* Oferă spațiu interior să nu mai fie înghesuit */
+        }
+
+        /* Antetul calendarului (Luna și Anul) */
+        .flatpickr-months {
+            margin-bottom: 8px !important;
+        }
+        .flatpickr-current-month {
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            color: #1a1a2a !important;
+        }
+
+        /* Săgețile de navigare stânga/dreapta */
+        .flatpickr-months .flatpickr-prev-month, 
+        .flatpickr-months .flatpickr-next-month {
+            padding: 10px !important;
+            color: #e91e8c !important;
+        }
+        .flatpickr-months .flatpickr-prev-month svg, 
+        .flatpickr-months .flatpickr-next-month svg {
+            fill: #e91e8c !important;
+            width: 12px !important;
+            height: 12px !important;
+        }
+
+        /* Zilele săptămânii (Lun, Mar, Mie...) */
+        span.flatpickr-weekday {
+            color: #777 !important;
+            font-weight: 600 !important;
+        }
+
+        /* REPARARE CIFRE: Ziua selectată primește rozul corect */
+        .flatpickr-day.selected, 
+        .flatpickr-day.selected:hover, 
+        .flatpickr-day.selected:focus {
+            background: #e91e8c !important;
+            border-color: #e91e8c !important;
+            color: white !important;
+            box-shadow: 0 4px 10px rgba(233, 30, 140, 0.3) !important;
+        }
+
+        /* Zilele de azi sau cele pe care punem mouse-ul */
+        .flatpickr-day.today {
+            border-color: rgba(233, 30, 140, 0.5) !important;
+        }
+        .flatpickr-day:hover {
+            background: rgba(233, 30, 140, 0.1) !important;
+            color: #e91e8c !important;
+        }
+
+        /* =================================================== */
+        /* REPARARE CEAS (TIME PICKER) - Îndepărtăm albastrul urât */
+        /* =================================================== */
+        .flatpickr-time {
+            height: 45px !important;
+            line-height: 45px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        /* Repoziționăm cele două puncte dintre ore și minute */
+        .flatpickr-time .flatpickr-time-separator {
+            color: #1a1a2a !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 100% !important;
+        }
+
+        /* Eliminăm selecția albastră nativă și punem text curat */
+        .flatpickr-time input {
+            color: #1a1a2a !important;
+            font-weight: 700 !important;
+            font-size: 1.1rem !important;
+            border-radius: 8px !important;
+        }
+
+        /* Când dăm click să edităm cifrele din ceas, fundalul devine roz pal, NU albastru */
+        .flatpickr-time input:focus {
+            background: rgba(233, 30, 140, 0.1) !important;
+            color: #e91e8c !important;
+        }
+
+        /* Săgețile mici sus/jos de la ceas */
+        .flatpickr-time .numInputWrapper span.arrowUp:after { border-bottom-color: #e91e8c !important; }
+        .flatpickr-time .numInputWrapper span.arrowDown:after { border-top-color: #e91e8c !important; }
+
+        /* FIX pentru inputurile din pagină la Focus (Elimină chenarul roz strident de la data_rezervare) */
+        .form-control:focus {
+            border-color: #e91e8c !important;
+            box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1) !important;
+        }
+
+        /* =================================================== */
+/* REGULI RESPONSIVE (MOBILE & TABLET)     */
+/* =================================================== */
+
+/* 1. Pentru Tablete și Ecrane Medii (max-width: 992px) */
+@media (max-width: 992px) {
+    .product-page {
+        gap: 30px;
+        padding: 100px 20px 40px;
+    }
+    
+    .product-title {
+        font-size: 1.8rem;
+    }
+    
+    .product-price-box {
+        font-size: 2.2rem;
+    }
+}
+
+/* 2. Pentru Telefoane Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .product-page {
+        grid-template-columns: 1fr; /* Trece de la 2 coloane la o singură coloană (Split-screen -> Stacked) */
+        gap: 20px;
+        padding: 90px 15px 30px; /* Reducem padding-ul să câștigăm spațiu pe ecran mic */
+    }
+
+    /* Săgeata de înapoi va sta frumos centrată sau aliniată la stânga pe telefon */
+    .back-to-menu-wrapper {
+        margin-bottom: -5px;
+    }
+
+    /* Containerul imaginii devine flexibil și nu mai ocupă atât de mult spațiu pe verticală */
+    .product-image-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .product-main-img {
+        max-height: 300px; /* Limităm înălțimea pozei pe telefon ca să nu împingă detaliile prea jos */
+        object-fit: cover;
+    }
+
+    /* Recipientul cu detalii primește padding mai mic să nu mănânce ecranul */
+    .product-details-container {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+
+    .product-title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .product-price-box {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    /* Formularul de rezervare (Data, Ora, Nr. Persoane) trece pe un singur rând fiecare */
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Facem opțiunile de personalizare (lapte/topping) puțin mai compacte ca să fie ușor de atins cu degetul */
+    .option-label {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    /* Butonul principal devine mai mare, perfect pentru ecranele tactile */
+    .btn-action-order {
+        padding: 14px;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+}

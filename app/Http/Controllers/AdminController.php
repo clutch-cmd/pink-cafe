@@ -30,7 +30,7 @@ class AdminController extends Controller
     // Comenzi
     public function comenzi()
     {
-        $comenzi = Comanda::orderBy('created_at', 'desc')->get();
+        $comenzi = Comanda::with('produse')->orderBy('created_at', 'desc')->get();
         return view('admin.comenzi', compact('comenzi'));
     }
 

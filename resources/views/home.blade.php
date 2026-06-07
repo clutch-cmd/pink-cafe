@@ -155,7 +155,6 @@
     <section class="why-us">
         <h2 class="section-title">De ce PINK CAFÉ?</h2>
         <div class="why-grid">
-
             <div class="why-card">
                 <div class="why-icon" style="background: linear-gradient(135deg, #e91e8c, #f06292)">
                     <i class="fa-solid fa-mug-saucer" style="color: white;"></i>
@@ -179,9 +178,8 @@
                 <h3>Atmosferă Plăcută și Relaxantă</h3>
                 <p>Design modern, spațiu confortabil și muzică ambientală creează locul perfect pentru întâlniri cu prietenii sau lucru în liniște.</p>
             </div>
-
         </div>
     </section>
-     
+
 
 @endsection

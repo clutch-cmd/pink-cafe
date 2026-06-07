@@ -9,12 +9,13 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    transition: background 0.3s ease;
+    
+    /* INJECTARE EFECT DE STICLĂ (GLASSMORPHISM) */
+    background: rgba(87, 82, 82, 0.2); /* Transparent fluid */
+    backdrop-filter: blur(10px); /* Efectul de blur pe fundal */
+    -webkit-backdrop-filter: blur(10px); /* Suport Safari */
+    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar-logout {
@@ -82,14 +83,46 @@
     color: #db2777;
 }
 
-/* ========== BUTON HAMBURGER ========== */
+/* ========== BUTON HAMBURGER ANIMAT ========== */
 .navbar-toggle {
-    display: none;
+    display: none; 
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    color: #1a1a1a;
+    padding: 10px;
+    position: relative;
+    width: 44px;
+    height: 36px;
+}
+
+/* Liniile hamburgerului */
+.navbar-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+
+.line1 { top: 5px; }
+.line2 { top: 14px; }
+.line3 { top: 23px; }
+
+/* Când meniul este activ (vom adăuga clasa 'active' prin JS) */
+.navbar-toggle.active .line1 {
+    transform: rotate(45deg);
+    top: 14px;
+}
+
+.navbar-toggle.active .line2 {
+    opacity: 0;
+}
+
+.navbar-toggle.active .line3 {
+    transform: rotate(-45deg);
+    top: 14px;
 }
 
 /* ========== MOBILE ========== */
@@ -113,17 +146,30 @@
         gap: 12px;
         padding: 16px 0;
         margin-top: 8px;
+        
+        /* Efect de sticlă și pentru meniul drop-down pe mobil */
+        background: rgba(142, 139, 139, 0.3);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
-    .navbar-links.open {
-        display: flex;
-    }
+    .navbar-links.active {
+    display: flex;
+}
 
     .navbar-links a {
         color: #1a1a1a;
         font-size: 1rem;
         padding: 6px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .navbar-links a:last-child {
+        border-bottom: none; /* Scoatem linia de sub ultimul link */
     }
 
     .navbar-links a:hover,

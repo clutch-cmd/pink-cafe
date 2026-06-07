@@ -2,10 +2,15 @@
     {{-- LOGO clickabil spre Home --}}
     <a href="{{ route('home') }}" class="navbar-brand">
         <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe Logo" class="navbar-logo">
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }}?v={{ time() }}">
         <span class="navbar-title">PINK CAFÉ</span>
     </a>
 
-    <button class="navbar-toggle" id="navbarToggle">&#9776;</button>
+    <button class="navbar-toggle" id="hamburger-btn">
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+    </button>
 
     <ul class="navbar-links" id="navbarLinks">
         <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
@@ -42,4 +47,17 @@
             </li>
         @endauth
     </ul>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-btn');
+            const navMenu = document.querySelector('.navbar-links');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    if (navMenu) navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </nav>

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\MeniuController;
+use App\Http\Controllers\ComandaController;
+
 //Pagnile principale
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/meniu', [PageController::class, 'meniu'])->name('meniu');
@@ -32,3 +35,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/produse/{id}', [App\Http\Controllers\AdminController::class, 'editeazaProdus'])->name('produse.editeaza');
 });
 Route::post('/comanda', [App\Http\Controllers\ComandaController::class, 'store'])->name('comanda.store')->middleware('throttle:5,1');
+
+// Ruta dinamică pentru pagina fiecărui produs în parte
+Route::get('/meniu/produs/{id}', [MeniuController::class, 'show'])->name('produs.show');
+// Ruta care va primi datele din formularul paginii de produs
+Route::post('/comanda/trimite', [ComandaController::class, 'proceseazaComanda'])->name('comanda.trimite');
