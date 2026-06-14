@@ -12,8 +12,7 @@
     <div class="auth-card">
 
         <div class="auth-header">
-            <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe" class="auth-logo">
-            <h1>Creează cont</h1>
+            
             <p>Înregistrează-te pentru a comanda online</p>
         </div>
 

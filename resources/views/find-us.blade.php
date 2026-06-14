@@ -50,7 +50,7 @@
         <div class="findus-feedback-card">
             <h2>Formular de Feedback</h2>
             
-            <form action="#" method="POST" class="feedback-form">
+            <form action="{{ route('contact.trimite') }}" method="POST" class="feedback-form">
                 @csrf
                 
                 <div class="form-group">
@@ -59,10 +59,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                </div>
+
+                <div class="form-group">
                     <label for="telefon">Telefon <span class="required">*</span></label>
                     <input type="tel" id="telefon" name="telefon" required>
                 </div>
-
+                
                 <div class="form-group">
                     <label for="mesaj">Mesaj</label>
                     <textarea id="mesaj" name="mesaj" rows="4"></textarea>
@@ -82,6 +87,27 @@
 
                 <button type="submit" class="btn-submit-feedback">TRIMITE ÎNTREBARE</button>
             </form>
+            @if(session('status'))
+            <div style="
+                background-color: #fce4ec; 
+                color: #880e4f; 
+                padding: 15px; 
+                border-radius: 8px; 
+                border: 1px solid #f8bbd0; 
+                margin-top: 20px; 
+                text-align: center; 
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ session('status') }}
+            </div>
+@endif
+             @if($errors->any())
+                <div class="alert-error">{{ $errors->first() }}</div>
+             @endif
         </div>
 
     </div>

@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Comanda extends Model
 {
+    use Notifiable;
     protected $table = 'comenzi';
     protected $guarded = [];
 
     protected $fillable = [
+        'user_id',
         'nume',
         'telefon',
         'adresa',
@@ -24,6 +27,7 @@ class Comanda extends Model
         'numar_persoane',
         'mentiuni_speciale',
         'pret_total',
+        'mentiuni'
     ];
 
     protected $casts = [
@@ -42,4 +46,10 @@ class Comanda extends Model
     {
         return $this->belongsTo(Produs::class);
     }
+    // În app/Models/Comanda.php
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

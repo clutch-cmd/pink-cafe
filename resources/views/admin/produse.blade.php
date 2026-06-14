@@ -12,7 +12,7 @@
 {{-- Adaugă produs --}}
 <div class="admin-card">
     <h2>Adaugă Produs Nou</h2>
-    <form method="POST" action="{{ route('admin.produse.adauga') }}" class="admin-form">
+    <form method="POST" action="{{ route('admin.produse.adauga') }}" class="admin-form" enctype="multipart/form-data">
         @csrf
         <div class="admin-form-grid">
             <div class="admin-field">
@@ -44,6 +44,11 @@
             <div class="admin-field admin-field-full">
                 <label>Ingrediente</label>
                 <input type="text" name="ingrediente" placeholder="Ingrediente principale">
+            </div>
+            <div class="admin-field admin-field-full">
+                <label>Imagine Produs</label>              
+                <small style="color: #666;">Formate acceptate: JPG, PNG, GIF, WebP (max 2MB)</small>
+                <input type="file" id="imagine_produs" name="imagine" accept="image/jpeg, image/png, image/gif, image/webp" class="form-control">               
             </div>
         </div>
         <button type="submit" class="btn-adauga">

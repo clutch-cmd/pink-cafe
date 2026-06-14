@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Produs;
 use App\Models\Comanda;
 use App\Models\ComandaProdus;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmed;
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Log;
+use App\Notifications\ComandaStatus;
+use App\Mail\OrderCompleted;
+use App\Mail\OrderCancelled;
+use App\Models\Favorite;
 
 class ComandaController extends Controller
 {
@@ -38,10 +46,8 @@ class ComandaController extends Controller
             'telefon.required' => 'Telefonul este obligatoriu',
             'adresa.required' => 'Adresa este obligatorie',
             'produse.required' => 'Selectează cel puțin un produs',
-            'produse.min' => 'Selectează cel puțin un produs',
         ]);
 
-        // Calculează totalul
         $total = 0;
         $produseSelectate = [];
 
@@ -62,15 +68,21 @@ class ComandaController extends Controller
             return back()->withErrors(['produse' => 'Selectează cel puțin un produs!']);
         }
 
-        // Creează comanda
+        // Creează comanda și salvează user_id-ul logat
         $comanda = Comanda::create([
+            'user_id' => Auth::id(), // Salvează ID-ul utilizatorului logat
             'nume' => $request->nume,
             'telefon' => $request->telefon,
             'adresa' => $request->adresa,
             'comentarii' => $request->comentarii,
             'total' => $total,
             'status' => 'noua',
+            'data_rezervare' => $request->data_rezervare,
+            'ora_rezervare' => $request->ora_rezervare,
+            'mentiuni' => $request->mentiuni,
         ]);
+
+       
 
         // Salvează produsele comenzii
         foreach ($produseSelectate as $item) {
@@ -82,6 +94,12 @@ class ComandaController extends Controller
             ]);
         }
 
+        try {
+            Mail::to(Auth::user()->email)->send(new OrderConfirmed($comanda));
+        } catch (\Exception $e) {
+            logger()->error("Eroare trimitere email: " . $e->getMessage());
+        }
+
         return redirect()->route('comanda.succes', $comanda->id);
     }
 
@@ -90,63 +108,106 @@ class ComandaController extends Controller
         $comanda = Comanda::with('produse')->findOrFail($id);
         return view('comanda-succes', compact('comanda'));
     }
+
     public function proceseazaComanda(Request $request)
     {
-        // 1. Validarea datelor (Ne asigurăm că data și ora sunt obligatorii și logice)
         $request->validate([
             'produs_id' => 'required|exists:produse,id',
-            'data_rezervare' => 'required|date',
-            'ora_rezervare' => 'required',
-            'numar_persoane' => 'nullable|integer|min:1|max:20',
+        ], [
+            'produs_id.required' => 'Selectează un produs',
         ]);
 
-        // 2. Găsim produsul pentru a calcula prețul total
         $produs = Produs::findOrFail($request->produs_id);
-        
-        // Calculăm prețul total cu opțiuni
-        $pret_total = $produs->pret;
-        
-        // Adăugăm prețul laptelui dacă e diferit de normal
-        if ($request->filled('optiune_lapte') && $request->optiune_lapte !== 'normal') {
-            $preturi_lapte = [
-                'migdale' => 15,
-                'ovaz' => 15,
-            ];
-            $pret_total += $preturi_lapte[$request->optiune_lapte] ?? 0;
+
+        $toppings = $request->toppings ? json_encode($request->toppings) : null;
+
+        // Calculăm prețul total cu topping-uri și opțiuni
+        $pretTotal = $produs->pret;
+        if ($request->optiune_lapte === 'migdale' || $request->optiune_lapte === 'ovaz') {
+            $pretTotal += 15;
         }
-        
-        // Adăugăm prețurile toppingurilor
-        if ($request->has('toppings') && is_array($request->toppings)) {
-            $preturi_toppings = [
-                'frisca' => 10,
-                'sirop_vanilie' => 8,
-                'ciocolata' => 12,
-                'caramel' => 10,
-            ];
+        if ($request->toppings) {
             foreach ($request->toppings as $topping) {
-                $pret_total += $preturi_toppings[$topping] ?? 0;
+                if ($topping === 'frisca') $pretTotal += 10;
+                if ($topping === 'sirop_vanilie') $pretTotal += 8;
             }
         }
 
-        // 3. Crearea unei înregistrări noi în tabelul 'comenzi'
+        $user = Auth::user();
+
         $comanda = Comanda::create([
-            'produs_id' => $request->produs_id,
+            'user_id' => $user->id,
+            'nume' => $user->name,
+            'telefon' => $request->telefon ?? '—',
+            'adresa' => 'Rezervare la restaurant',
+            'comentarii' => $request->mentiuni_speciale,
+            'total' => $pretTotal,
+            'status' => 'noua',
+            'produs_id' => $produs->id,
             'optiune_lapte' => $request->optiune_lapte,
-            'toppings' => $request->has('toppings') ? json_encode($request->toppings) : null,
+            'toppings' => $toppings,
             'data_rezervare' => $request->data_rezervare,
             'ora_rezervare' => $request->ora_rezervare,
             'numar_persoane' => $request->numar_persoane,
-            'mentiuni_speciale' => $request->mentiuni_speciale ?? $request->mentiuni,
-            'pret_total' => $pret_total,
-            'nume' => $request->nume ?? 'Rezervare',
-            'telefon' => $request->telefon ?? '',
-            'adresa' => $request->adresa ?? '',
-            'comentarii' => $request->comentarii ?? null,
-            'total' => $pret_total,
-            'status' => 'noua',
+            'mentiuni' => $request->mentiuni_speciale,
         ]);
 
-        // 4. Redirecționarea clientului
-        return redirect()->back()->with('succes', 'Opțiunile și rezervarea au fost salvate! Continuăm spre finalizare.');
+        // Salvează în comanda_produse
+        ComandaProdus::create([
+            'comanda_id' => $comanda->id,
+            'produs_id' => $produs->id,
+            'cantitate' => 1,
+            'pret' => $pretTotal,
+        ]);
+
+        Mail::to(Auth::user()->email)->send(new OrderConfirmed($comanda));
+
+        return redirect()->route('comanda.succes', $comanda->id);
     }
+
+    public function contComenzi()
+    {
+        $comenzi = Comanda::with('produse')
+            ->where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('cont-comenzi', compact('comenzi'));
+    }
+
+    public function anuleazaComanda($id)
+    {
+        $comanda = Comanda::with('produse')->where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
+        if ($comanda->status === 'livrata' || $comanda->status === 'anulata') {
+            return back()->with('error', 'Această comandă nu mai poate fi anulată.');
+        }
+
+        $comanda->update(['status' => 'anulata']);
+
+        Mail::to(Auth::user()->email)->send(new OrderCancelled($comanda));
+
+        return redirect()->route('cont.comenzi')->with('success', 'Comanda a fost anulată cu succes.');
+    }
+
+    public function marcheazaLivrat($id)
+{
+    $comanda = Comanda::with('produse', 'user')->findOrFail($id);
+
+    $comanda->update([
+        'status' => 'livrat'
+    ]);
+
+    if ($comanda->user) {
+
+        Mail::to($comanda->user->email)
+            ->send(new OrderCompleted($comanda));
+
+    }
+
+    return back()->with(
+        'succes',
+        'Comanda a fost marcată ca livrată.'
+    );
+}
 }

@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
             ['email' => 'admin@pinkcafe.md'],
             [
                 'name' => 'Admin Pink Cafe',
-                'email' => 'admin@pinkcafe.md',
+                'email' => 'victorloghin06@gmail.com',
                 'password' => Hash::make('admin111'),
                 'rol' => 'admin',
                 'created_at' => now(),

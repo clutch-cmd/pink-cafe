@@ -164,6 +164,7 @@
         .form-control:focus {
             border-color: #e91e8c;
             background: #fff;
+            box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1) !important;
         }
 
         /* Alergeni box */
@@ -332,13 +333,7 @@
         .flatpickr-time .numInputWrapper span.arrowUp:after { border-bottom-color: #e91e8c !important; }
         .flatpickr-time .numInputWrapper span.arrowDown:after { border-top-color: #e91e8c !important; }
 
-        /* FIX pentru inputurile din pagină la Focus (Elimină chenarul roz strident de la data_rezervare) */
-        .form-control:focus {
-            border-color: #e91e8c !important;
-            box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1) !important;
-        }
-
-        /* =================================================== */
+/* =================================================== */
 /* REGULI RESPONSIVE (MOBILE & TABLET)     */
 /* =================================================== */
 

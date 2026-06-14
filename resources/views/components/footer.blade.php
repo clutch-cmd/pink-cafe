@@ -3,7 +3,7 @@
 
         <div class="footer-brand">
             <div class="footer-brand-top">
-                <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe" class="footer-logo">
+                <i class="fa-solid fa-mug-hot" style="color: #e91e8c;"></i>
                 <span class="footer-title">PINK CAFÉ</span>
             </div>
             <p class="footer-desc">O destinație plină de viață și culori din care ieși plin de emoții pozitive</p>

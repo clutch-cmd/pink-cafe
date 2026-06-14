@@ -19,13 +19,15 @@ class PageController extends Controller
     $lemonades = Produs::where('categorie', 'lemonades')->get();
     $deserturi = Produs::where('categorie', 'deserturi')->get();
     $inghetata = Produs::where('categorie', 'inghetata')->get();
+    $sandvisuri = Produs::where('categorie', 'sandvisuri_burgere')->get();
 
     return view('meniu', compact(
         'bauturiCalde',
         'cocktailuri',
         'lemonades',
         'deserturi',
-        'inghetata'
+        'inghetata',
+        'sandvisuri'
     ));
 }
 

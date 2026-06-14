@@ -12,7 +12,7 @@
     <div class="auth-card">
 
         <div class="auth-header">
-            <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe" class="auth-logo">
+            
             <h1>Bine ai revenit!</h1>
             <p>Conectează-te la contul tău</p>
         </div>
@@ -22,7 +22,11 @@
                 {{ $errors->first() }}
             </div>
         @endif
-
+        @if (session('status'))
+            <div style="background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-size: 0.9rem;">
+                {{ session('status') }}
+            </div>
+        @endif
         <form method="POST" action="/login" class="auth-form">
             @csrf
 
@@ -46,6 +50,11 @@
                     required
                 >
             </div>
+            <div style="text-align: right; margin-top: -10px;" class="auth-switch">
+            <a href="{{ route('password.request') }}" style="font-size: 0.8rem; color: #e91e8c; text-decoration: none;">
+                Ai uitat parola?
+            </a>
+        </div>
 
             <button type="submit" class="auth-btn">
                 Conectează-te

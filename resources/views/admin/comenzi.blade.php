@@ -14,17 +14,20 @@
     {{-- TABEL DESKTOP --}}
     <table class="admin-table desktop-only">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Nume</th>
-                <th>Telefon</th>
-                <th>Adresă</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Data</th>
-                <th>Acțiuni</th>
-            </tr>
-        </thead>
+    <tr>
+        <th>#</th>
+        <th>Nume</th>
+        <th>Telefon</th>
+        <th>Adresă</th>
+        <th>Total</th>
+        <th>Data Rezervare</th>
+        <th>Ora</th>
+        <th>Mențiuni</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th>Acțiuni</th>
+    </tr>
+</thead>
         <tbody>
             @forelse($comenzi as $comanda)
                 <tr>
@@ -33,6 +36,9 @@
                     <td>{{ $comanda->telefon }}</td>
                     <td>{{ $comanda->adresa }}</td>
                     <td>{{ $comanda->total }} lei</td>
+                    <td>{{ $comanda->data_rezervare ?? '—' }}</td>
+                    <td>{{ $comanda->ora_rezervare ?? '—' }}</td>
+                    <td>{{ $comanda->mentiuni ?? '—' }}</td>
                     <td>
                         <form method="POST" action="{{ route('admin.comenzi.status', $comanda->id) }}">
                             @csrf
@@ -91,17 +97,45 @@
                         <i class="fas fa-money-bill"></i>
                         <span><strong>{{ $comanda->total }} lei</strong></span>
                     </div>
+
+                    {{-- DATA REZERVARE --}}
+                    @if($comanda->data_rezervare)
+                        <div class="mobile-card-row">
+                            <i class="fas fa-calendar-day"></i>
+                            <span>Rezervare: <strong>{{ $comanda->data_rezervare }}</strong></span>
+                        </div>
+                    @endif
+
+                    {{-- ORA REZERVARE --}}
+                    @if($comanda->ora_rezervare)
+                        <div class="mobile-card-row">
+                            <i class="fas fa-clock"></i>
+                            <span>Ora: <strong>{{ $comanda->ora_rezervare }}</strong></span>
+                        </div>
+                    @endif
+
+                    {{-- MENTIUNI --}}
+                    @if($comanda->mentiuni)
+                        <div class="mobile-card-row">
+                            <i class="fas fa-comment-dots"></i>
+                            <span>{{ $comanda->mentiuni }}</span>
+                        </div>
+                    @endif
+
                     @if($comanda->comentarii)
                         <div class="mobile-card-row">
                             <i class="fas fa-comment"></i>
                             <span>{{ $comanda->comentarii }}</span>
                         </div>
                     @endif
+
                     <div class="mobile-card-row">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-history"></i>
                         <span>{{ $comanda->created_at ? $comanda->created_at->format('d.m.Y H:i') : 'N/A' }}</span>
                     </div>
                 </div>
+
+                
 
                 <div class="mobile-card-footer">
                     <form method="POST" action="{{ route('admin.comenzi.status', $comanda->id) }}" style="flex:1">

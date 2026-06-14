@@ -48,8 +48,26 @@
         <h1 class="product-title">{!! $produs->nume !!}</h1>
         
         {{-- Prețul care se va schimba dinamic --}}
-        <div class="product-price-box">
-            <span id="dinamic-price">{{ number_format($produs->pret, 0) }}</span> lei
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <div class="product-price-box" style="flex:1;">
+                <span id="dinamic-price">{{ number_format($produs->pret, 0) }}</span> lei
+            </div>
+            @auth
+                <form method="POST" action="{{ route('favorite.toggle', $produs->id) }}">
+                    @csrf
+                    <button type="submit" class="fav-prod-btn {{ Auth::user()->favorite->contains($produs->id) ? 'fav-active' : '' }}" style="
+                        display:flex; align-items:center; gap:8px;
+                        padding:10px 20px; border-radius:50px; border:2px solid #fbcfe8;
+                        background: {{ Auth::user()->favorite->contains($produs->id) ? '#fdf2f8' : 'white' }};
+                        color: {{ Auth::user()->favorite->contains($produs->id) ? '#db2777' : '#9ca3af' }};
+                        cursor:pointer; font-size:0.9rem; font-weight:600;
+                        font-family:inherit; transition:all 0.2s;
+                    " onmouseover="this.style.borderColor='#db2777';this.style.color='#db2777';this.style.background='#fdf2f8'" onmouseout="this.style.borderColor='#fbcfe8';this.style.color='{{ Auth::user()->favorite->contains($produs->id) ? '#db2777' : '#9ca3af' }}';this.style.background='{{ Auth::user()->favorite->contains($produs->id) ? '#fdf2f8' : 'white' }}'">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>{{ Auth::user()->favorite->contains($produs->id) ? 'În preferate' : 'Salvează' }}</span>
+                    </button>
+                </form>
+            @endauth
         </div>
 
         {{-- MESAJ DE SUCCES LA SALVAREA REZERVĂRII --}}

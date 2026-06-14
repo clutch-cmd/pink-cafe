@@ -20,6 +20,8 @@
 
     @include('components.footer')
 
+    
+
     <script>
         const btn = document.getElementById('navbarToggle');
         const links = document.getElementById('navbarLinks');

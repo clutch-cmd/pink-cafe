@@ -18,7 +18,7 @@
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="admin-logo">
             <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe">
-            <span>Pink Cafe</span>
+            <h1 class="hero-title">PINK CAFÉ</h1>
         </div>
 
         <nav class="admin-nav">
@@ -50,7 +50,7 @@
             <button class="btn-hamburger" onclick="openSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
-            <h2>Pink Cafe Admin</h2>
+            <h2>PINK CAFÉ Admin</h2>
             <a href="{{ route('home') }}" style="color:#e91e8c; font-size:0.85rem">
                 <i class="fas fa-external-link-alt"></i> Site
             </a>

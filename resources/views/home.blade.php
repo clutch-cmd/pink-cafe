@@ -151,35 +151,75 @@
             });
         });
     </script>
-    {{-- DE CE PINK CAFÉ SECTION --}}
-    <section class="why-us">
-        <h2 class="section-title">De ce PINK CAFÉ?</h2>
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-icon" style="background: linear-gradient(135deg, #e91e8c, #f06292)">
+    {{-- DESPRE NOI SECTION --}}
+<section class="about-us">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Despre Noi</h2>
+    
+    <div class="about-grid">
+        
+        {{-- COLOANA 1: Card sus, Imagine jos --}}
+        <div class="about-col">
+            <div class="about-card">
+                <div class="about-icon" style="background: linear-gradient(135deg, #e91e8c, #f06292)">
                     <i class="fa-solid fa-mug-saucer" style="color: white;"></i>
                 </div>
                 <h3>Cafea de Calitate Superioară</h3>
-                <p>Folosim doar boabe de cafea premium, prăjite proaspăt și preparate de barista profesioniști. Fiecare ceașcă este o experiență unică.</p>
+                <p>Folosim doar boabe de cafea premium, prăjite proaspăt și preparate de barista profesioniști.</p>
             </div>
+            <div class="about-image" style="background-image: url('{{ asset('images/interior1.jpg') }}');" onclick="openModal('{{ asset('images/interior1.jpg') }}')"></div>
+        </div>
 
-            <div class="why-card">
-                <div class="why-icon" style="background: linear-gradient(135deg, #9c27b0, #e91e8c)">
+        {{-- COLOANA 2: Imagine sus, Card jos --}}
+        <div class="about-col">
+            <div class="about-image" style="background-image: url('{{ asset('images/interior2.jpg') }}');" onclick="openModal('{{ asset('images/interior2.jpg') }}')"></div>
+            <div class="about-card">
+                <div class="about-icon" style="background: linear-gradient(135deg, #9c27b0, #e91e8c)">
                     <i class="fa-solid fa-star" style="color: white;"></i>
                 </div>
                 <h3>Deserturi Unice și Delicioase</h3>
-                <p>Prăjituri artizanale, mochi japoneze și creații dulci exclusiviste preparate zilnic din ingrediente de calitate înaltă.</p>
-            </div>
-
-            <div class="why-card">
-                <div class="why-icon" style="background: linear-gradient(135deg, #7b1fa2, #9c27b0)">
-                    <i class="fa-solid fa-people-group" style="color: white;"></i>
-                </div>
-                <h3>Atmosferă Plăcută și Relaxantă</h3>
-                <p>Design modern, spațiu confortabil și muzică ambientală creează locul perfect pentru întâlniri cu prietenii sau lucru în liniște.</p>
+                <p>Prăjituri artizanale, mochi japoneze și creații dulci exclusiviste preparate zilnic.</p>
             </div>
         </div>
-    </section>
+
+        {{-- COLOANA 3: Card sus, Imagine jos --}}
+        <div class="about-col">
+            <div class="about-card">
+                <div class="about-icon" style="background: linear-gradient(135deg, #7b1fa2, #9c27b0)">
+                    <i class="fa-solid fa-people-group" style="color: white;"></i>
+                </div>
+                <h3>Atmosferă Plăcută</h3>
+                <p>Design modern, spațiu confortabil și muzică ambientală care creează locul perfect pentru tine.</p>
+            </div>
+            <div class="about-image" style="background-image: url('{{ asset('images/interior3.jpg') }}');" onclick="openModal('{{ asset('images/interior3.jpg') }}')"></div>
+        </div>
+
+    </div>
+</section>
+
+{{-- HTML PENTRU MODALUL DE IMAGINI (Adaugă-l la finalul fișierului, înainte de </body>) --}}
+<div id="imageModal" class="image-modal" onclick="closeModal(event)">
+    <span class="close-modal" onclick="closeModal(event)">&times;</span>
+    <img id="modalImage" src="" alt="Imagine marita">
+</div>
+
+{{-- JAVASCRIPT PENTRU MODAL (Adaugă-l imediat sub div-ul de mai sus) --}}
+<script>
+    function openModal(imageSrc) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('imageModal').style.display = 'flex';
+        // Previne scroll-ul paginii cand modalul este deschis
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal(event) {
+        // Închide doar dacă dai click pe fundal sau pe "X", nu și pe poză
+        if(event.target.id === 'imageModal' || event.target.className === 'close-modal') {
+            document.getElementById('imageModal').style.display = 'none';
+            // Permite scroll-ul din nou
+            document.body.style.overflow = 'auto'; 
+        }
+    }
+</script>
 
 
 @endsection

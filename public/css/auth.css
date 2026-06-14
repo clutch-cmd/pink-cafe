@@ -10,12 +10,14 @@
 
 /* ===== AUTH CARD ===== */
 .auth-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 24px;
     padding: 40px;
     width: 100%;
     max-width: 440px;
-    box-shadow: 0 20px 60px rgba(233, 30, 140, 0.15);
+    box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== HEADER ===== */
@@ -31,6 +33,13 @@
     object-fit: cover;
     margin-bottom: 16px;
     border: 3px solid #fce4f3;
+    background: linear-gradient(135deg, #f472b6, #db2777);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(219, 39, 119, 0.3);
+    color: white;
+    font-size: 18px;
 }
 
 .auth-header h1 {

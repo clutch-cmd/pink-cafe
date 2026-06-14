@@ -75,6 +75,9 @@ class ProdusSeeder extends Seeder
             ['nume' => 'Buble Gum', 'pret' => 65, 'categorie' => 'inghetata', 'descriere' => 'Desert inspirat din gumă de mestecat', 'ingrediente' => 'Cremă, aromă, colorant alimentar', 'alergeni' => null, 'imagine' => 'bubble_gum.jpg'],
             ['nume' => 'Mango', 'pret' => 75, 'categorie' => 'inghetata', 'descriere' => 'Desert exotic din mango proaspăt', 'ingrediente' => 'Mango, cremă, blat vanilie', 'alergeni' => null, 'imagine' => 'mango_ing.jpg'],
             ['nume' => 'Ananas', 'pret' => 65, 'categorie' => 'inghetata', 'descriere' => 'Desert tropical din ananas', 'ingrediente' => 'Ananas, cremă, blat vanilie', 'alergeni' => null, 'imagine' => 'ananas.jpg'],
+
+            // Sandvișuri & Burgere
+            ['nume' => 'Pink Avocado Toast', 'pret' => 75, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Pâine cu maia, piure avocado, ou poșat, rodie', 'ingrediente' => 'Pâine, avocado, ou, rodie', 'alergeni' => 'gluten, ou', 'imagine' => null],
         ];
 
         foreach ($produse as $produs) {

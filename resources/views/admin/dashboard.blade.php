@@ -6,7 +6,7 @@
 
 <div class="admin-header">
     <h1>Dashboard</h1>
-    <p>Bun venit în panelul de administrare Pink Cafe!</p>
+    <p>Bun venit în panelul de administrare PINK CAFÉ!</p>
 </div>
 
 <div class="admin-stats">
@@ -46,15 +46,18 @@
 
     <table class="admin-table desktop-only">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Nume</th>
-                <th>Telefon</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Data</th>
-            </tr>
-        </thead>
+    <tr>
+        <th>#</th>
+        <th>Nume</th>
+        <th>Telefon</th>
+        <th>Total</th>
+        <th>Data Rezervare</th>
+        <th>Ora</th>
+        <th>Mențiuni</th>
+        <th>Status</th>
+        <th>Data</th>
+    </tr>
+</thead>
         <tbody>
             @forelse($ultimeleComenzi as $comanda)
                 <tr>
@@ -62,6 +65,9 @@
                     <td>{{ $comanda->nume }}</td>
                     <td>{{ $comanda->telefon }}</td>
                     <td>{{ $comanda->total }} lei</td>
+                    <td>{{ $comanda->data_rezervare ?? '—' }}</td>
+                    <td>{{ $comanda->ora_rezervare ?? '—' }}</td>
+                    <td>{{ $comanda->mentiuni ?? '—' }}</td>
                     <td>
                         <span class="status-badge status-{{ $comanda->status }}">
                             {{ $comanda->status == 'noua' ? 'Nouă' :
@@ -72,7 +78,7 @@
                     <td>{{ $comanda->created_at ? $comanda->created_at->format('d.m.Y H:i') : 'N/A' }}</td>
                 </tr>
             @empty
-                <tr><td colspan="6" class="text-center">Nu există comenzi</td></tr>
+                <tr><td colspan="9" class="text-center">Nu există comenzi</td></tr>
             @endforelse
         </tbody>
     </table>
@@ -89,7 +95,7 @@
                            ($comanda->status == 'livrata' ? 'Livrată' : 'Anulată')) }}
                     </span>
                 </div>
-
+               
                 <div class="mobile-card-body">
                     <div class="mobile-card-row">
                         <i class="fas fa-user"></i>
@@ -103,6 +109,26 @@
                         <i class="fas fa-money-bill"></i>
                         <span><strong>{{ $comanda->total }} lei</strong></span>
                     </div>
+                     @if($comanda->data_rezervare)
+                    <div class="mobile-card-row">
+                        <i class="fas fa-calendar-day"></i>
+                        <span>Rezervare: <strong>{{ $comanda->data_rezervare }}</strong></span>
+                    </div>
+                @endif
+
+                @if($comanda->ora_rezervare)
+                    <div class="mobile-card-row">
+                        <i class="fas fa-clock"></i>
+                        <span>Ora: <strong>{{ $comanda->ora_rezervare }}</strong></span>
+                    </div>
+                @endif
+
+                @if($comanda->mentiuni)
+                    <div class="mobile-card-row">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>{{ $comanda->mentiuni }}</span>
+                    </div>
+                @endif
                     <div class="mobile-card-row">
                         <i class="fas fa-clock"></i>
                         <span>{{ $comanda->created_at ? $comanda->created_at->format('d.m.Y H:i') : 'N/A' }}</span>
