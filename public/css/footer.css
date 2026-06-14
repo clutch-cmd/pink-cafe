@@ -1,5 +1,8 @@
 .footer {
-    background: #1e1922;
+    background-image: linear-gradient(rgba(20, 16, 24, 0.85), rgba(20, 16, 24, 0.85)), url('/images/footer-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: 50px 40px 20px;
     margin-top: 80px;

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirmed;
 use Illuminate\Support\Facades\Auth; 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use App\Notifications\ComandaStatus;
 use App\Mail\OrderCompleted;
 use App\Mail\OrderCancelled;
@@ -210,4 +212,37 @@ class ComandaController extends Controller
         'Comanda a fost marcată ca livrată.'
     );
 }
+
+    public function actualizeazaCont(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'current_password' => 'nullable|required_with:password|string',
+            'password' => 'nullable|string|min:8|confirmed',
+        ], [
+            'name.required' => 'Numele este obligatoriu',
+            'email.required' => 'Adresa de email este obligatorie',
+            'email.unique' => 'Această adresă de email este deja folosită',
+            'current_password.required_with' => 'Introdu parola actuală pentru a o schimba',
+            'password.min' => 'Parola nouă trebuie să aibă minim 8 caractere',
+            'password.confirmed' => 'Confirmarea parolei nu corespunde',
+        ]);
+
+        if ($request->filled('password')) {
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors(['current_password' => 'Parola actuală este incorectă'])->withInput();
+            }
+            $user->password = $request->password;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('cont.comenzi')->with('success', 'Datele contului au fost actualizate cu succes.');
+    }
 }

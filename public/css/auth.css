@@ -13,7 +13,7 @@
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 24px;
+    border-radius: 10px;
     padding: 40px;
     width: 100%;
     max-width: 440px;
@@ -26,21 +26,6 @@
     margin-bottom: 32px;
 }
 
-.auth-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 16px;
-    border: 3px solid #fce4f3;
-    background: linear-gradient(135deg, #f472b6, #db2777);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(219, 39, 119, 0.3);
-    color: white;
-    font-size: 18px;
-}
 
 .auth-header h1 {
     font-size: 1.8rem;
@@ -89,7 +74,7 @@
 .auth-field input {
     padding: 14px 16px;
     border: 1.5px solid #e5e7eb;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 0.95rem;
     color: #1a1a2a;
     outline: none;
@@ -111,7 +96,7 @@
     background: linear-gradient(135deg, #e91e8c, #9c27b0);
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;

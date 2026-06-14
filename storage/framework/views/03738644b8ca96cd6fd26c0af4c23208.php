@@ -65,8 +65,8 @@
                 </div>
 
                 <div class="slide-item">
-                    <img src="<?php echo e(asset('images/fresh_grapefruit.jpg')); ?>" alt="Fresh Grapefruit" onclick="openGalleryModal(this.src)">
-                    <div class="slide-badge">Fresh Grapefruit</div>
+                    <img src="<?php echo e(asset('images/pornstar_martini.jpg')); ?>" alt="Pornstar Martini" onclick="openGalleryModal(this.src)">
+                    <div class="slide-badge">Pornstar Martini</div>
                 </div>
             </div>
 

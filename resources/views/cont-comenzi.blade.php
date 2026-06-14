@@ -10,17 +10,123 @@
 }
 
 .cont-wrapper {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 100px 24px 60px;
+}
+
+/* ===== LAYOUT CU SIDEBAR ===== */
+.cont-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.cont-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ===== SIDEBAR CONT ===== */
+.cont-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.08);
+    padding: 22px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cont-sidebar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e1922;
+    padding: 0 14px 14px;
+    border-bottom: 1px solid rgba(233, 30, 140, 0.15);
+    margin-bottom: 8px;
+}
+
+.cont-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #4a4a55;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.cont-nav-link i {
+    color: #e91e8c;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.cont-nav-link:hover {
+    background: rgba(233, 30, 140, 0.08);
+    color: #be185d;
+}
+
+.cont-nav-link.active {
+    background: linear-gradient(135deg, #e91e8c, #be185d);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(233, 30, 99, 0.3);
+}
+
+.cont-nav-link.active i {
+    color: #fff;
+}
+
+.cont-nav-divider {
+    height: 1px;
+    background: rgba(233, 30, 140, 0.15);
+    margin: 8px 6px;
+}
+
+.cont-nav-link.logout {
+    color: #ef4444;
+}
+
+.cont-nav-link.logout i {
+    color: #ef4444;
+}
+
+.cont-nav-link.logout:hover {
+    background: #fef2f2;
+}
+
+.cont-nav-form {
+    margin: 0;
+}
+
+.cont-nav-form button.cont-nav-link {
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
 }
 
 /* ===== HERO ===== */
 .cont-hero {
     position: relative;
-    background: rgba(46, 46, 46, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-image: linear-gradient(135deg, rgba(46, 38, 48, 0.82), rgba(46, 38, 48, 0.75)), url('/images/footer-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 6px;
     padding: 48px 48px 56px;
     margin-bottom: 40px;
@@ -55,12 +161,36 @@
     z-index: 1;
 }
 
+.cont-greeting-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 6px;
+}
+
+.cont-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f472b6, #db2777);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(219, 39, 119, 0.4);
+    border: 2px solid rgba(255,255,255,.2);
+}
+
 .cont-greeting {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
     font-weight: 700;
     color: #f4cbdf;
-    margin: 0 0 6px;
+    margin: 0;
     letter-spacing: -0.5px;
 }
 
@@ -113,6 +243,7 @@
 /* ===== SECTIONS ===== */
 .cont-section {
     margin-bottom: 44px;
+    scroll-margin-top: 90px;
 }
 
 .cont-section-header {
@@ -145,6 +276,7 @@
 
 .cont-section-title .icon-pink { background: #fce4ec; color: #e91e63; }
 .cont-section-title .icon-coral { background: #fff3e0; color: #e65100; }
+.cont-section-title .icon-purple { background: #f3e5f5; color: #8e24aa; }
 
 /* ===== FAVORITE GRID ===== */
 .fav-scroll {
@@ -277,9 +409,9 @@
     border-radius: 6px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,.04);
-    
+
     transition: all .2s;
-    
+
 }
 
 .tl-card:hover {
@@ -316,7 +448,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.3px;
-    
+
 }
 
 .tl-badge-noua { background: rgba(255, 255, 255, 0.705); color: #1565c0; }
@@ -466,11 +598,135 @@
 .cont-msg-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
 .cont-msg-error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
 
+/* ===== DETALII CONT (FORMULAR) ===== */
+.cont-form-card {
+    background: rgba(255, 255, 255, 0.705);
+    border-radius: 6px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.04);
+}
+
+.cont-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.cont-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cont-form-group.full {
+    grid-column: 1 / -1;
+}
+
+.cont-form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.cont-form-group input {
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #fbcfe8;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: rgba(255,255,255,.8);
+    transition: border-color 0.2s;
+}
+
+.cont-form-group input:focus {
+    outline: none;
+    border-color: #e91e8c;
+}
+
+.cont-form-divider {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e1922;
+    margin: 28px 0 16px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(233, 30, 140, 0.15);
+}
+
+.cont-form-hint {
+    font-size: 0.78rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.cont-form-error {
+    font-size: 0.78rem;
+    color: #c62828;
+    font-weight: 500;
+}
+
+.btn-save-cont {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #f472b6, #db2777);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(219, 39, 119, 0.3);
+    transition: box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.btn-save-cont:hover {
+    box-shadow: 0 4px 20px rgba(219, 39, 119, 0.45);
+}
+
 /* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .cont-layout {
+        flex-direction: column;
+    }
+
+    .cont-sidebar {
+        width: 100%;
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .cont-sidebar-title {
+        display: none;
+    }
+
+    .cont-nav-link {
+        flex: 1 1 auto;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 10px 8px;
+    }
+
+    .cont-nav-divider {
+        display: none;
+    }
+
+    .cont-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .cont-wrapper { padding: 80px 16px 40px; }
     .cont-hero { padding: 32px 24px 36px; border-radius: 6px; }
     .cont-greeting { font-size: 1.6rem; }
+    .cont-avatar { width: 48px; height: 48px; font-size: 1.3rem; }
+    .cont-greeting-row { gap: 12px; }
     .cont-stats { gap: 8px; }
     .cont-stat { padding: 10px 14px; min-width: 80px; flex: 1; }
     .cont-stat-nr { font-size: 1.2rem; }
@@ -485,6 +741,7 @@
 @media (max-width: 480px) {
     .cont-hero { padding: 24px 16px 28px; border-radius: 6px; }
     .cont-greeting { font-size: 1.3rem; }
+    .cont-avatar { width: 40px; height: 40px; font-size: 1.1rem; }
     .cont-stat { padding: 8px 10px; }
     .cont-stat-nr { font-size: 1rem; }
 }
@@ -493,6 +750,38 @@
 
 @section('content')
 <div class="cont-wrapper">
+
+    <div class="cont-layout">
+
+        {{-- SIDEBAR --}}
+        <aside class="cont-sidebar">
+            <div class="cont-sidebar-title">Contul Meu</div>
+
+            <a href="#panou" class="cont-nav-link">
+                <i class="fa-solid fa-gauge"></i> Panou control
+            </a>
+            <a href="#comenzi" class="cont-nav-link">
+                <i class="fa-solid fa-bag-shopping"></i> Comenzi
+            </a>
+            <a href="#favorite" class="cont-nav-link">
+                <i class="fa-solid fa-heart"></i> Favorite
+            </a>
+            <a href="#detalii-cont" class="cont-nav-link">
+                <i class="fa-solid fa-user-pen"></i> Detalii cont
+            </a>
+
+            <div class="cont-nav-divider"></div>
+
+            <form method="POST" action="{{ route('logout') }}" class="cont-nav-form">
+                @csrf
+                <button type="submit" class="cont-nav-link logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Deconectare
+                </button>
+            </form>
+        </aside>
+
+        {{-- CONTINUT --}}
+        <div class="cont-content">
 
     {{-- Mesaje --}}
     @if(session('success'))
@@ -505,7 +794,7 @@
         <div class="cont-msg cont-msg-success"><i class="fa-solid fa-heart"></i> {{ session('success_fav') }}</div>
     @endif
 
-    {{-- HERO --}}
+    {{-- HERO / PANOU CONTROL --}}
     @php
         $totalComenzi = $comenzi->count();
         $comenziActive = $comenzi->whereIn('status', ['noua', 'in_procesare'])->count();
@@ -513,12 +802,15 @@
         $totalFavorite = Auth::user()->favorite()->count();
     @endphp
 
-    <div class="cont-hero">
+    <div class="cont-hero" id="panou">
         <div class="cont-hero-content">
-            <h1 class="cont-greeting">
-                <span class="cont-greeting-emoji"><i class="fa-solid fa-mug-saucer"></i></span>
-                Salut, {{ Auth::user()->name }}
-            </h1>
+            <div class="cont-greeting-row">
+                <div class="cont-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                <h1 class="cont-greeting">
+                    <span class="cont-greeting-emoji"><i class="fa-solid fa-mug-saucer"></i></span>
+                    Salut, {{ Auth::user()->name }}
+                </h1>
+            </div>
             <p class="cont-sub">Bine ai revenit la PINK CAFÉ — iată un sumar al activității tale.</p>
             <div class="cont-stats">
                 <div class="cont-stat">
@@ -543,14 +835,15 @@
 
     {{-- FAVORITE --}}
     @php $favorite = Auth::user()->favorite; @endphp
-    @if($favorite->isNotEmpty())
-    <div class="cont-section">
+    <div class="cont-section" id="favorite">
         <div class="cont-section-header">
             <h2 class="cont-section-title">
                 <span class="icon icon-pink"><i class="fa-solid fa-heart"></i></span>
                 Preferatele tale
             </h2>
         </div>
+
+        @if($favorite->isNotEmpty())
         <div class="fav-scroll">
             @foreach($favorite as $produs)
             <div class="fav-card">
@@ -579,11 +872,20 @@
             </div>
             @endforeach
         </div>
+        @else
+        <div class="cont-empty">
+            <div class="cont-empty-icon"><i class="fa-solid fa-heart"></i></div>
+            <h3>Nicio preferință încă</h3>
+            <p>Adaugă produse la favorite pentru a le găsi rapid aici.</p>
+            <a href="{{ route('meniu') }}" class="cont-empty-btn">
+                <i class="fa-solid fa-arrow-right"></i> Vezi meniul
+            </a>
+        </div>
+        @endif
     </div>
-    @endif
 
     {{-- COMENZI TIMELINE --}}
-    <div class="cont-section">
+    <div class="cont-section" id="comenzi">
         <div class="cont-section-header">
             <h2 class="cont-section-title">
                 <span class="icon icon-coral"><i class="fa-solid fa-timeline"></i></span>
@@ -677,6 +979,77 @@
             </div>
         @endif
     </div>
+
+    {{-- DETALII CONT --}}
+    <div class="cont-section" id="detalii-cont">
+        <div class="cont-section-header">
+            <h2 class="cont-section-title">
+                <span class="icon icon-purple"><i class="fa-solid fa-user-pen"></i></span>
+                Detalii cont
+            </h2>
+        </div>
+
+        <div class="cont-form-card">
+            <form method="POST" action="{{ route('cont.actualizeaza') }}">
+                @csrf
+                @method('PUT')
+
+                <div class="cont-form-grid">
+                    <div class="cont-form-group">
+                        <label for="name">Nume afișat</label>
+                        <input type="text" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
+                        @error('name')
+                            <span class="cont-form-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="cont-form-group">
+                        <label for="email">Adresă email</label>
+                        <input type="email" id="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
+                        @error('email')
+                            <span class="cont-form-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="cont-form-divider">Schimbare parolă</div>
+
+                <div class="cont-form-grid">
+                    <div class="cont-form-group full">
+                        <label for="current_password">Parola actuală</label>
+                        <input type="password" id="current_password" name="current_password" autocomplete="current-password">
+                        <span class="cont-form-hint">Lasă gol dacă nu vrei să schimbi parola</span>
+                        @error('current_password')
+                            <span class="cont-form-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="cont-form-group">
+                        <label for="password">Parolă nouă</label>
+                        <input type="password" id="password" name="password" autocomplete="new-password">
+                        @error('password')
+                            <span class="cont-form-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="cont-form-group">
+                        <label for="password_confirmation">Confirmă parola nouă</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" autocomplete="new-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-save-cont">
+                    <i class="fa-solid fa-floppy-disk"></i> Salvează modificările
+                </button>
+            </form>
+        </div>
+    </div>
+
+        </div>
+        {{-- /cont-content --}}
+
+    </div>
+    {{-- /cont-layout --}}
 
 </div>
 @endsection

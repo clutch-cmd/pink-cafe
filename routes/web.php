@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->prefix('cont')->name('cont.')->group(function () {
     Route::get('/comenzi', [App\Http\Controllers\ComandaController::class, 'contComenzi'])->name('comenzi');
     Route::post('/anuleaza/{id}', [App\Http\Controllers\ComandaController::class, 'anuleazaComanda'])->name('anuleaza');
+    Route::put('/actualizeaza', [App\Http\Controllers\ComandaController::class, 'actualizeazaCont'])->name('actualizeaza');
 });
 
 // Favorite

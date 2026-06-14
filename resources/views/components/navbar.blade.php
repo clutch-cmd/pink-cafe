@@ -20,26 +20,51 @@
             @auth
                 <div class="navbar-user">
                     @if(Auth::user()->rol === 'admin')
-                        <a href="{{ route('admin.dashboard') }}" class="navbar-user-info">
+                        <button type="button" class="navbar-user-info" id="userDropdownBtn" onclick="toggleUserDropdown()">
                             <div class="navbar-avatar">
                                 <i class="fa-solid fa-gear"></i>
                             </div>
                             <span class="navbar-username">Admin</span>
-                        </a>
+                            <i class="fa-solid fa-chevron-down navbar-dropdown-arrow"></i>
+                        </button>
+
+                        <div class="navbar-dropdown-menu" id="userDropdownMenu">
+                            <a href="{{ route('admin.dashboard') }}" class="navbar-dropdown-item">
+                                <i class="fa-solid fa-gauge"></i> Panou control
+                            </a>
+                            <div class="navbar-dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}" class="navbar-logout-form">
+                                @csrf
+                                <button type="submit" class="navbar-dropdown-item logout">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Deconectare
+                                </button>
+                            </form>
+                        </div>
                     @else
-                        <a href="{{ route('cont.comenzi') }}" class="navbar-user-info">
+                        <button type="button" class="navbar-user-info" id="userDropdownBtn" onclick="toggleUserDropdown()">
                             <div class="navbar-avatar">
                                 <i class="fa-solid fa-circle-user"></i>
                             </div>
                             <span class="navbar-username">{{ Auth::user()->name }}</span>
-                        </a>
-                    @endif
-                    <form method="POST" action="{{ route('logout') }}" class="navbar-logout-form">
-                        @csrf
-                        <button type="submit" class="navbar-logout-btn" title="Deconectare">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <i class="fa-solid fa-chevron-down navbar-dropdown-arrow"></i>
                         </button>
-                    </form>
+
+                        <div class="navbar-dropdown-menu" id="userDropdownMenu">
+                            <a href="{{ route('cont.comenzi') }}" class="navbar-dropdown-item">
+                                <i class="fa-solid fa-bag-shopping"></i> Comenzi
+                            </a>
+                            <a href="{{ route('cont.comenzi') }}#favorite" class="navbar-dropdown-item">
+                                <i class="fa-solid fa-heart"></i> Favorite
+                            </a>
+                            <div class="navbar-dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}" class="navbar-logout-form">
+                                @csrf
+                                <button type="submit" class="navbar-dropdown-item logout">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Deconectare
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             @else
                 <a href="{{ route('login') }}" class="login-btn">
@@ -111,12 +136,32 @@ function closeMobileMenu() {
     icon.className = 'fa-solid fa-bars';
 }
 
-// Close mobile menu on click outside
+function toggleUserDropdown() {
+    const menu = document.getElementById('userDropdownMenu');
+    const btn = document.getElementById('userDropdownBtn');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+}
+
+function closeUserDropdown() {
+    const menu = document.getElementById('userDropdownMenu');
+    const btn = document.getElementById('userDropdownBtn');
+    if (menu) menu.classList.remove('open');
+    if (btn) btn.classList.remove('open');
+}
+
+// Close mobile menu and user dropdown on click outside
 document.addEventListener('click', function(e) {
     const nav = document.getElementById('navbar');
     const menu = document.getElementById('mobileMenu');
     if (nav && !nav.contains(e.target) && menu && menu.classList.contains('open')) {
         closeMobileMenu();
+    }
+
+    const dropdownBtn = document.getElementById('userDropdownBtn');
+    const dropdownMenu = document.getElementById('userDropdownMenu');
+    if (dropdownMenu && dropdownBtn && !dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        closeUserDropdown();
     }
 });
 </script>
