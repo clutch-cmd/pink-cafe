@@ -696,9 +696,10 @@
     .cont-sidebar {
         width: 100%;
         position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 18px;
     }
 
     .cont-sidebar-title {
@@ -706,14 +707,22 @@
     }
 
     .cont-nav-link {
-        flex: 1 1 auto;
-        justify-content: center;
-        font-size: 0.8rem;
-        padding: 10px 8px;
+        justify-content: flex-start;
+        font-size: 0.85rem;
+        padding: 12px 14px;
     }
 
     .cont-nav-divider {
         display: none;
+    }
+
+    .cont-nav-form,
+    .cont-nav-link.logout {
+        grid-column: 1 / -1;
+    }
+
+    .cont-nav-form button.cont-nav-link.logout {
+        justify-content: center;
     }
 
     .cont-form-grid {

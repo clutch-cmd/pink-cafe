@@ -94,7 +94,9 @@
 
 /* ===== LEFT ===== */
 .comanda-left {
-    background: white;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -150,7 +152,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fdf0f7;
+    background: #ffffff;
     border-radius: 12px;
     padding: 12px 16px;
     transition: background 0.2s ease;
@@ -303,7 +305,9 @@
 }
 
 .cos-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -333,7 +337,7 @@
 
 /* ===== COS ITEM ===== */
 .cos-item {
-    background: #fdf0f7;
+    background: #ffffff;
     border-radius: 12px;
     padding: 12px;
     margin-bottom: 8px;
@@ -439,7 +443,9 @@
 }
 
 .succes-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 24px;
     padding: 50px 40px;
     max-width: 550px;
@@ -467,7 +473,7 @@
 }
 
 .succes-detalii {
-    background: #fdf0f7;
+    background: #ffffff;
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 30px;
