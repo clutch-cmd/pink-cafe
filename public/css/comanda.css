@@ -474,7 +474,7 @@
 
 .succes-detalii {
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 6px;
     padding: 20px;
     margin-bottom: 30px;
     text-align: left;
@@ -499,17 +499,17 @@
 .succes-total {
     margin-top: 12px;
     font-size: 1rem;
-    color: #e91e8c;
+    color: #e95aa8;
     text-align: right;
 }
 
 .btn-acasa {
     display: inline-block;
     padding: 14px 40px;
-    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    background: linear-gradient(135deg, #e95aa8, #b25cc1);
     color: white;
     text-decoration: none;
-    border-radius: 14px;
+    border-radius: 8px;
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;

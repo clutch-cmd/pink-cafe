@@ -12,8 +12,8 @@
     <div class="auth-card">
 
         <div class="auth-header">
-            
-            <p>Înregistrează-te pentru a comanda online</p>
+            <h1>Înregistrează-te</h1>
+            <p>Înregistrarea pe acest site vă permite să accesați starea și istoricul comenzii dvs. Doar completați câmpurile de mai jos și vom obține un nou cont creat pentru dvs. în cel mai scurt timp.</p>
         </div>
 
         @if($errors->any())

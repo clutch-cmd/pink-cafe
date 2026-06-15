@@ -1,11 +1,24 @@
 <nav class="navbar" id="navbar">
+    
+    <div class="navbar-topbar" id="navbarTopbar">
+        <div class="navbar-topbar-container">
+            <div class="navbar-topbar-info">
+                <span><i class="fa-solid fa-phone"></i> 0790 43 047</span>
+                <span><i class="fa-solid fa-clock"></i> Luni - Duminică: 07:00 - 22:00</span>
+            </div>
+            <div class="navbar-topbar-social">
+                <a href="https://instagram.com/pink_cafe_cahul" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com/@pink_cafe_cahul" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div class="navbar-container">
         
         <a href="<?php echo e(route('home')); ?>" class="navbar-brand">
             <div class="navbar-logo-icon">
-                <i class="fa-solid fa-mug-hot" style="color: rgb(255, 255, 255);"></i>
+                <img src="<?php echo e(asset('images/pc-logo.png')); ?>" alt="Pink Café">
             </div>
-            <span class="navbar-title">PINK CAFÉ</span>
         </a>
 
         
@@ -50,7 +63,10 @@
                         </button>
 
                         <div class="navbar-dropdown-menu" id="userDropdownMenu">
-                            <a href="<?php echo e(route('cont.comenzi')); ?>" class="navbar-dropdown-item">
+                            <a href="<?php echo e(route('cont.comenzi')); ?>#panou" class="navbar-dropdown-item">
+                                <i class="fa-solid fa-gauge"></i> Panou Control
+                            </a>
+                            <a href="<?php echo e(route('cont.comenzi')); ?>#comenzi" class="navbar-dropdown-item">
                                 <i class="fa-solid fa-bag-shopping"></i> Comenzi
                             </a>
                             <a href="<?php echo e(route('cont.comenzi')); ?>#favorite" class="navbar-dropdown-item">
@@ -165,4 +181,29 @@ document.addEventListener('click', function(e) {
         closeUserDropdown();
     }
 });
+
+// Ascunde/arata topbar-ul de informatii la scroll
+(function() {
+    const topbar = document.getElementById('navbarTopbar');
+    if (!topbar) return;
+
+    let lastScroll = window.scrollY;
+    const threshold = 10;
+
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll <= 0) {
+            topbar.classList.remove('collapsed');
+        } else if (currentScroll > lastScroll && currentScroll > threshold) {
+            // scroll down
+            topbar.classList.add('collapsed');
+        } else if (currentScroll < lastScroll) {
+            // scroll up
+            topbar.classList.remove('collapsed');
+        }
+
+        lastScroll = currentScroll;
+    }, { passive: true });
+})();
 </script><?php /**PATH D:\pinkcafe\resources\views/components/navbar.blade.php ENDPATH**/ ?>

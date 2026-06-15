@@ -115,8 +115,13 @@ class ComandaController extends Controller
     {
         $request->validate([
             'produs_id' => 'required|exists:produse,id',
+            'data_rezervare' => 'required|date|after_or_equal:today',
+            'ora_rezervare' => 'required',
         ], [
             'produs_id.required' => 'Selectează un produs',
+            'data_rezervare.required' => 'Trebuie să alegi o dată pentru rezervare',
+            'data_rezervare.after_or_equal' => 'Data rezervării nu poate fi în trecut',
+            'ora_rezervare.required' => 'Trebuie să alegi o oră pentru rezervare',
         ]);
 
         $produs = Produs::findOrFail($request->produs_id);

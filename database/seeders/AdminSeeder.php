@@ -11,7 +11,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->updateOrInsert(
-            ['email' => 'admin@pinkcafe.md'],
+            ['email' => 'victorloghin06@gmail.com'],
             [
                 'name' => 'Admin Pink Cafe',
                 'email' => 'victorloghin06@gmail.com',

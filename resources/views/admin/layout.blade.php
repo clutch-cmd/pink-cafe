@@ -6,6 +6,7 @@
     <title>Admin — @yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    
 </head>
 <body class="admin-body">
 
@@ -17,8 +18,8 @@
     {{-- SIDEBAR --}}
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="admin-logo">
-            <img src="{{ asset('images/pinkcafe_logo.jpg') }}" alt="Pink Cafe">
-            <h1 class="hero-title">PINK CAFÉ</h1>
+            
+            <h1 class="hero-title">ADMIN PINK CAFÉ</h1>
         </div>
 
         <nav class="admin-nav">
@@ -50,7 +51,7 @@
             <button class="btn-hamburger" onclick="openSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
-            <h2>PINK CAFÉ Admin</h2>
+            <h2>ADMIN PINK CAFÉ</h2>
             <a href="{{ route('home') }}" style="color:#e91e8c; font-size:0.85rem">
                 <i class="fas fa-external-link-alt"></i> Site
             </a>

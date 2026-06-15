@@ -46,7 +46,9 @@
         </span>
         
         <h1 class="product-title"><?php echo $produs->nume; ?></h1>
-        
+        <a class="meniu-item meniu-item-desert">
+            <span class="meniu-item-desc"><?php echo e($produs->descriere); ?></span>
+        </a>
         
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
             <div class="product-price-box" style="flex:1;">
@@ -169,7 +171,17 @@
                     </div>
                 </div>
             <?php endif; ?>
-
+            
+            
+            <?php if($errors->any()): ?>
+            <div style="background:#ffebee;border:1px solid #ffcdd2;color:#c62828;padding:12px 15px;border-radius:12px;margin-bottom:20px;font-size:0.9rem;">
+                <ul style="margin:0;padding-left:18px;">
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+            </div>
+            <?php endif; ?>
             
             <button type="submit" class="btn-action-order">
                 <i class="fa-solid fa-basket-shopping"></i> Continuă spre Comandă

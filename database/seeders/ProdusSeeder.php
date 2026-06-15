@@ -11,7 +11,6 @@ class ProdusSeeder extends Seeder
     {
         // Dezactivăm verificarea cheilor străine pentru a putea curăța tabelele
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('comenzi')->truncate(); // Am pus 'comenzi' pentru că probabil asta e tabelul tău
         DB::table('produse')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
@@ -56,12 +55,10 @@ class ProdusSeeder extends Seeder
             ['nume' => 'Dimineata de Vara', 'pret' => 65, 'categorie' => 'deserturi', 'descriere' => 'Desert fresh cu fructe de vară', 'ingrediente' => 'Cremă iaurt, fructe sezon, blat vanilie', 'alergeni' => null, 'imagine' => 'dimineata_vara.jpg'],
             ['nume' => 'Cub de Ciocolata', 'pret' => 70, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură intensă de ciocolată', 'ingrediente' => 'Ciocolată neagră, mousse cacao, blat brownie', 'alergeni' => null, 'imagine' => 'cub_ciocolata.jpg'],
             ['nume' => 'Three Chocolates', 'pret' => 70, 'categorie' => 'deserturi', 'descriere' => 'Trei straturi de ciocolată premium', 'ingrediente' => 'Ciocolată albă, lapte, neagră, blat cacao', 'alergeni' => null, 'imagine' => 'three_chocolates.jpg'],
-            ['nume' => 'Mochi Mango Zmeura & Fructul Pasiunii', 'pret' => 55, 'categorie' => 'deserturi', 'descriere' => 'Mochi japonez cu umplutură tropicală', 'ingrediente' => 'Orez mochi, cremă mango, zmeură, passion fruit', 'alergeni' => null, 'imagine' => 'mochi_mango.jpg'],
             ['nume' => 'Mochi Capsuna', 'pret' => 55, 'categorie' => 'deserturi', 'descriere' => 'Mochi dulce cu căpșuni', 'ingrediente' => 'Orez mochi, cremă căpșuni proaspete', 'alergeni' => null, 'imagine' => 'mochi_capsuna.jpg'],
             ['nume' => 'Mochi Snickers', 'pret' => 55, 'categorie' => 'deserturi', 'descriere' => 'Mochi inspirat din Snickers', 'ingrediente' => 'Orez mochi, caramel, arahide, ciocolată', 'alergeni' => null, 'imagine' => 'mochi_snickers.jpg'],
             ['nume' => 'Mochi Lamaie', 'pret' => 55, 'categorie' => 'deserturi', 'descriere' => 'Mochi proaspăt cu lămâie', 'ingrediente' => 'Orez mochi, cremă lămâie, zeste citrice', 'alergeni' => null, 'imagine' => 'mochi_lamaie.jpg'],
             ['nume' => 'Fructe de Padure', 'pret' => 70, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură cu fructe de pădure', 'ingrediente' => 'Afine, mure, zmeură, cremă, blat', 'alergeni' => null, 'imagine' => 'fructe_padure.jpg'],
-            ['nume' => 'Prajitura Cupola', 'pret' => 65, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură elegantă în formă de cupolă', 'ingrediente' => 'Mousse vanilie, glazură oglindă, blat', 'alergeni' => null, 'imagine' => 'prajitura_cupola.jpg'],
             ['nume' => 'Malibu', 'pret' => 70, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură cu aromă de cocos și rom', 'ingrediente' => 'Cremă Malibu, cocos, blat umed', 'alergeni' => null, 'imagine' => 'malibu.jpg'],
             ['nume' => 'Lamaie', 'pret' => 65, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură proaspătă de lămâie', 'ingrediente' => 'Lemon curd, cremă, blat vanilie', 'alergeni' => null, 'imagine' => 'lamaie.jpg'],
             ['nume' => 'Para', 'pret' => 65, 'categorie' => 'deserturi', 'descriere' => 'Prăjitură delicată cu pere', 'ingrediente' => 'Pere caramelizate, cremă vanilie, blat', 'alergeni' => null, 'imagine' => 'para.jpg'],
@@ -77,7 +74,13 @@ class ProdusSeeder extends Seeder
             ['nume' => 'Ananas', 'pret' => 65, 'categorie' => 'inghetata', 'descriere' => 'Desert tropical din ananas', 'ingrediente' => 'Ananas, cremă, blat vanilie', 'alergeni' => null, 'imagine' => 'ananas.jpg'],
 
             // Sandvișuri & Burgere
-            ['nume' => 'Pink Avocado Toast', 'pret' => 75, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Pâine cu maia, piure avocado, ou poșat, rodie', 'ingrediente' => 'Pâine, avocado, ou, rodie', 'alergeni' => 'gluten, ou', 'imagine' => null],
+            ['nume' => 'Pink Avocado Toast', 'pret' => 75, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Pâine cu maia, piure avocado, ou poșat, rodie', 'ingrediente' => 'Pâine, avocado, ou, rodie', 'alergeni' => 'gluten, ou', 'imagine' => 'pink_avocado_toast.jpg'],
+            ['nume' => 'Blush Burger', 'pret' => 120, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Vită cu sos roz din sfeclă, brie, rucola', 'ingrediente' => 'Vită, chiflă, sfeclă, brie, rucola', 'alergeni' => 'gluten, lactate', 'imagine' => 'blush_burger.jpg'],
+            ['nume' => 'Club Pink Lady', 'pret' => 85, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Pui, bacon, salată și sos de busuioc', 'ingrediente' => 'Pâine, pui, bacon, salată, busuioc', 'alergeni' => 'gluten', 'imagine' =>'club_pink_lady.jpg'],
+            ['nume' => 'Veggie Bagel', 'pret' => 70, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Bagel cu cremă de brânză și somon', 'ingrediente' => 'Bagel, cremă brânză, somon, mărar', 'alergeni' => 'gluten, lactate, pește', 'imagine' => 'veggie_bagel.jpg'],
+            ['nume' => 'Halloumi Wrap', 'pret' => 65, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Lipie cu brânză halloumi la grătar și legume', 'ingrediente' => 'Lipie, halloumi, ardei, dovlecel', 'alergeni' => 'gluten, lactate', 'imagine' => 'halloumi_wrap.jpg'],
+            ['nume' => 'Chicken Melt', 'pret' => 80, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Sandviș cald cu pui și cheddar', 'ingrediente' => 'Pâine, pui, cheddar, maioneză', 'alergeni' => 'gluten, lactate, ou', 'imagine' => 'chicken_melt.jpg'],
+            ['nume' => 'Prosciutto Panini', 'pret' => 75, 'categorie' => 'sandvisuri_burgere', 'descriere' => 'Panini cu prosciutto și mozzarella', 'ingrediente' => 'Pâine, prosciutto, mozzarella, busuioc', 'alergeni' => 'gluten, lactate', 'imagine' => 'prosciutto_panini.jpg'],
         ];
 
         foreach ($produse as $produs) {

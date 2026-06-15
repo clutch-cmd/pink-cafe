@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     padding: 100px 20px 40px;
-    background: linear-gradient(135deg, #fce4f3 0%, #f8f0ff 100%);
+    
 }
 
 /* ===== AUTH CARD ===== */
@@ -93,7 +93,7 @@
 /* ===== BUTON ===== */
 .auth-btn {
     padding: 14px;
-    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    background: linear-gradient(135deg, #e95aa8, #b25cc1);
     color: white;
     border: none;
     border-radius: 10px;

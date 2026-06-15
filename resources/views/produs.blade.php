@@ -46,7 +46,9 @@
         </span>
         
         <h1 class="product-title">{!! $produs->nume !!}</h1>
-        
+        <a class="meniu-item meniu-item-desert">
+            <span class="meniu-item-desc">{{ $produs->descriere }}</span>
+        </a>
         {{-- Prețul care se va schimba dinamic --}}
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
             <div class="product-price-box" style="flex:1;">
@@ -167,7 +169,17 @@
                     </div>
                 </div>
             @endif
-
+            
+            {{-- Mesaj de eroare pentru rezervare --}}
+            @if ($errors->any())
+            <div style="background:#ffebee;border:1px solid #ffcdd2;color:#c62828;padding:12px 15px;border-radius:12px;margin-bottom:20px;font-size:0.9rem;">
+                <ul style="margin:0;padding-left:18px;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             {{-- BUTONUL DE TRIMITERE ACTIONAL --}}
             <button type="submit" class="btn-action-order">
                 <i class="fa-solid fa-basket-shopping"></i> Continuă spre Comandă
