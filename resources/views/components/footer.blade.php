@@ -3,7 +3,7 @@
 
         <div class="footer-brand">
             <div class="footer-brand-top">
-                <i class="fa-solid fa-mug-hot" style="color: #e91e8c;"></i>
+                <img src="{{ asset('images/pc-logo.png') }}" alt="Pink Café" class="footer-logo">
                 <span class="footer-title">PINK CAFÉ</span>
             </div>
             <p class="footer-desc">O destinație plină de viață și culori din care ieși plin de emoții pozitive</p>
@@ -13,11 +13,15 @@
             <h4>Contact</h4>
             <p>
                 <i class="fa-solid fa-phone-flip footer-contact-icon"></i>
+                <a href="tel:079043047" style="color: white; text-decoration: none;">
                 0790 43 047
+                </a>
             </p>
             <p>
-                <i class="fa-solid fa-location-dot footer-contact-icon"></i> 
+                <i class="fa-solid fa-location-dot footer-contact-icon"></i>
+                <a href="https://maps.google.com/?q=Calea+Republicii+24a+Cahul" target="_blank" style="color: white; text-decoration: none;">
                 Calea Republicii 24a, nr.4, Cahul
+                </a>
             </p>
         </div>
 
@@ -36,7 +40,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 
     <div class="footer-bottom">

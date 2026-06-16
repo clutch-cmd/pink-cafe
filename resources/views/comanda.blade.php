@@ -52,11 +52,12 @@
                         <button type="button" class="tab-btn" onclick="showCategory('lemonades', this)">Lemonades</button>
                         <button type="button" class="tab-btn" onclick="showCategory('deserturi', this)">Deserturi</button>
                         <button type="button" class="tab-btn" onclick="showCategory('inghetata', this)">Înghețată</button>
+                        <button type="button" class="tab-btn" onclick="showCategory('sandvisuri_burgere', this)">Sandvișuri & Burgere</button>
                     </div>
 
                     {{-- Produsele raman la fel ca in codul tau initial --}}
                     {{-- ... --}}
-                    @foreach(['bauturi_calde' => $bauturiCalde, 'cocktailuri' => $cocktailuri, 'lemonades' => $lemonades, 'deserturi' => $deserturi, 'inghetata' => $inghetata] as $key => $categorisita)
+                    @foreach(['bauturi_calde' => $bauturiCalde, 'cocktailuri' => $cocktailuri, 'lemonades' => $lemonades, 'deserturi' => $deserturi, 'inghetata' => $inghetata , 'sandvisuri_burgere' => $sandvisuri] as $key => $categorisita)
                         <div class="comanda-products {{ $key != 'bauturi_calde' ? 'hidden' : '' }}" id="cat_{{ $key }}">
                             @foreach($categorisita as $produs)
                                 <div class="comanda-product-item">
@@ -64,7 +65,7 @@
                                         <span class="product-name">{{ $produs->nume }}</span>
                                         <span class="product-pret">{{ number_format($produs->pret, 0) }} lei</span>
                                     </div>
-                                    <button type="button" class="btn-add-product" onclick="addToCart({{ $produs->id }}, '{{ addslashes($produs->nume) }}', {{ $produs->pret }})">
+                                    <button type="button" class="btn-add-product" onclick="addToCart({{ $produs->id }}, '{{ addslashes($produs->nume) }}', {{ $produs->pret }}, '/images/{{ $produs->imagine }}')">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
@@ -177,31 +178,33 @@
 
 @section('scripts')
 <script>
-// ... (functiile addToCart, removeFromCart, deleteFromCart raman la fel) ...
+let localCart = {};
 
-let cart = {};
-
-function addToCart(id, nume, pret) {
-    if (cart[id]) {
-        cart[id].cantitate++;
+function addToCart(id, nume, pret, imagine) {
+    if (localCart[id]) {
+        localCart[id].cantitate++;
     } else {
-        cart[id] = { id, nume, pret, cantitate: 1 };
+        localCart[id] = { id, nume, pret, imagine, cantitate: 1 };
+    }
+    // Apelează și funcția din navbar pentru a actualiza coșul acolo
+    if (typeof addItemToCart === 'function') {
+        addItemToCart(id, nume, pret, imagine);
     }
     updateCart();
 }
 
 function removeFromCart(id) {
-    if (cart[id]) {
-        cart[id].cantitate--;
-        if (cart[id].cantitate <= 0) {
-            delete cart[id];
+    if (localCart[id]) {
+        localCart[id].cantitate--;
+        if (localCart[id].cantitate <= 0) {
+            delete localCart[id];
         }
     }
     updateCart();
 }
 
 function deleteFromCart(id) {
-    delete cart[id];
+    delete localCart[id];
     updateCart();
 }
 
@@ -217,14 +220,14 @@ function updateCart() {
     hiddenInputs.innerHTML = '';
 
     let total = 0;
-    let hasItems = Object.keys(cart).length > 0;
+    let hasItems = Object.keys(localCart).length > 0;
 
     if (hasItems) {
         cosGol.classList.add('hidden');
         cosTotal.classList.remove('hidden');
 
-        for (let id in cart) {
-            const item = cart[id];
+        for (let id in localCart) {
+            const item = localCart[id];
             total += item.pret * item.cantitate;
 
             cosItems.innerHTML += `
@@ -248,14 +251,15 @@ function updateCart() {
         totalPret.textContent = total + ' lei';
 
         if (btnPlaseaza) {
-        const livrare = total >= 200 ? 0 : 25;
-        const totalCuLivrare = total + livrare;
-        btnPlaseaza.innerHTML = `<i class="fas fa-shopping-cart"></i> Plasează Comanda (${totalCuLivrare} lei)`;
-    }
+            const livrare = total >= 200 ? 0 : 25;
+            const totalCuLivrare = total + livrare;
+            btnPlaseaza.innerHTML = `<i class="fas fa-shopping-cart"></i> Plasează Comanda (${totalCuLivrare} lei)`;
+        }
     } else {
         cosGol.classList.remove('hidden');
         cosTotal.classList.add('hidden');
     }
+
     const livrareRow = document.getElementById('livrareRow');
     const livrareText = document.getElementById('livrareText');
 
@@ -273,7 +277,6 @@ function updateCart() {
     }
 }
 
-// ... restul functiilor showCategory, goToStep2, goToStep1 ramane la fel ...
 function showCategory(category, btn) {
     document.querySelectorAll('.comanda-products').forEach(el => el.classList.add('hidden'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -282,7 +285,7 @@ function showCategory(category, btn) {
 }
 
 function goToStep2() {
-    if (Object.keys(cart).length === 0) {
+    if (Object.keys(localCart).length === 0) {
         alert('Selectează cel puțin un produs!');
         return;
     }
@@ -300,6 +303,5 @@ function goToStep1() {
     document.getElementById('step1indicator').classList.add('active');
     window.scrollTo(0, 0);
 }
-
 </script>
 @endsection

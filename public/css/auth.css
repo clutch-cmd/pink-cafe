@@ -93,7 +93,7 @@
 /* ===== BUTON ===== */
 .auth-btn {
     padding: 14px;
-    background: linear-gradient(135deg, #e95aa8, #b25cc1);
+    background: #333;
     color: white;
     border: none;
     border-radius: 10px;
@@ -106,7 +106,8 @@
 }
 
 .auth-btn:hover {
-    transform: translateY(-2px);
+    background: #1a1a2a;
+    transform: scale(1.02);
     box-shadow: 0 8px 25px rgba(233, 30, 140, 0.4);
 }
 

@@ -1,5 +1,4 @@
-       
-        /* ===== STILURI PAGINĂ PRODUS (GLASSMORPHISM) ===== */
+/* ===== STILURI PAGINĂ PRODUS (GLASSMORPHISM) ===== */
         .product-page {
             max-width: 1100px;
             margin: 0 auto;
@@ -69,7 +68,7 @@
         .product-price-box {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #e91e8c;
+            color: #1a1a2a;
             margin-bottom: 25px;
         }
 
@@ -128,7 +127,7 @@
 
         .option-price {
             font-weight: 600;
-            color: #e91e8c;
+            color: #1a1a2a;
         }
 
         /* Formular Rezervare */
@@ -184,7 +183,7 @@
         .btn-action-order {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #e91e8c, #9c27b0);
+            background: #333;
             color: white;
             border: none;
             border-radius: 8px;
@@ -201,7 +200,8 @@
         }
 
         .btn-action-order:hover {
-            transform: scale(1.05);
+            background: #1a1a2a;
+            transform: scale(1.01);
             opacity: 0.95;
         }
 
@@ -333,6 +333,208 @@
         .flatpickr-time .numInputWrapper span.arrowUp:after { border-bottom-color: #e91e8c !important; }
         .flatpickr-time .numInputWrapper span.arrowDown:after { border-top-color: #e91e8c !important; }
 
+/* ===== PRODUSE SIMILARE - REDESIGN PREMIUM ===== */
+.similare-section {
+    max-width: 1100px;
+    margin: 60px auto 60px;
+    padding: 0 20px;
+}
+
+.similare-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a2a;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: -0.3px;
+}
+
+.similare-slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 54px;
+}
+
+.similare-slider-track {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    padding: 16px 4px;
+}
+
+.similare-slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== CARD REDESIGN ===== */
+.similare-slide-item {
+    position: relative;
+    flex-shrink: 0;
+    width: 280px;
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
+}
+
+.similare-slide-item:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(233, 30, 140, 0.18);
+}
+
+/* Zona imaginii - aspect ratio fix, cu overlay gradient */
+.similare-slide-img {
+    width: 100%;
+    height: 210px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fdf2f8, #fce4ec);
+}
+
+.similare-slide-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.similare-slide-item:hover .similare-slide-img img {
+    transform: scale(1.07);
+}
+
+/* Gradient overlay pe imaginea - ca sa se topeasca frumos in badge */
+.similare-slide-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.15) 60%,
+        transparent 100%);
+    pointer-events: none;
+}
+
+.similare-slide-fallback {
+    font-size: 3.5rem;
+    color: #e91e8c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Badge redesenat - acum sta pe imagine, deasupra gradientului */
+.similare-slide-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    z-index: 2;
+}
+
+.similare-slide-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    flex: 1;
+}
+
+.similare-slide-pret {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    background: #e91e8c;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(233, 30, 140, 0.4);
+}
+
+/* Accentul de culoare de jos al cardului - linie subtire roz */
+.similare-slide-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f472b6, #db2777);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.similare-slide-item:hover::after {
+    opacity: 1;
+}
+
+/* Sagetile slider */
+.similare-arrow-prev,
+.similare-arrow-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 1.5px solid #fbcfe8;
+    color: #db2777;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(233, 30, 140, 0.15);
+    transition: all 0.25s ease;
+}
+
+.similare-arrow-prev:hover,
+.similare-arrow-next:hover {
+    background: linear-gradient(135deg, #f472b6, #db2777);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(233, 30, 140, 0.35);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.similare-arrow-prev { left: 0; }
+.similare-arrow-next { right: 0; }
+
+/* Grid pentru 1-2 produse */
+.similare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.similare-grid .similare-slide-item {
+    width: 100%;
+}
+
 /* =================================================== */
 /* REGULI RESPONSIVE (MOBILE & TABLET)     */
 /* =================================================== */
@@ -410,5 +612,47 @@
         padding: 14px;
         font-size: 1rem;
         margin-top: 20px;
+    }
+
+    .similare-section {
+        padding: 0 15px;
+        margin: 40px auto 40px;
+    }
+
+    /* Pe mobil scoatem sagetile si facem scroll natural cu snapping */
+    .similare-slider-container {
+        padding: 0;
+    }
+
+    .similare-arrow-prev,
+    .similare-arrow-next {
+        display: none;
+    }
+
+    .similare-slider-track {
+        gap: 14px;
+        padding: 16px 4px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .similare-slide-item {
+        width: calc(75vw);
+        max-width: 280px;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    .similare-slide-img {
+        height: 180px;
+    }
+
+    .similare-slide-name {
+        font-size: 0.9rem;
+    }
+
+    .similare-slide-pret {
+        font-size: 0.78rem;
+        padding: 4px 10px;
     }
 }

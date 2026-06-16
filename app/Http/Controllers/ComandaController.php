@@ -26,13 +26,15 @@ class ComandaController extends Controller
         $lemonades = Produs::where('categorie', 'lemonades')->get();
         $deserturi = Produs::where('categorie', 'deserturi')->get();
         $inghetata = Produs::where('categorie', 'inghetata')->get();
+        $sandvisuri = Produs::where('categorie', 'sandvisuri_burgere')->get();
 
         return view('comanda', compact(
             'bauturiCalde',
             'cocktailuri',
             'lemonades',
             'deserturi',
-            'inghetata'
+            'inghetata',
+            'sandvisuri'
         ));
     }
 
@@ -140,6 +142,22 @@ class ComandaController extends Controller
             }
         }
 
+        // Procesează opțiuni extra pentru sandvișuri & burgere
+        $optiuniExtra = [];
+        if ($request->optiuni_extra) {
+            foreach ($request->optiuni_extra as $extra) {
+                $optiuniExtra[] = $extra;
+                if ($extra === 'bacon') $pretTotal += 15;
+                if ($extra === 'cascaval') $pretTotal += 10;
+                if ($extra === 'ou') $pretTotal += 8;
+            }
+        }
+        if ($request->sos_extra) {
+            $optiuniExtra[] = 'sos_' . $request->sos_extra;
+            if ($request->sos_extra === 'bbq') $pretTotal += 5;
+            if ($request->sos_extra === 'usturoi') $pretTotal += 3;
+        }
+
         $user = Auth::user();
 
         $comanda = Comanda::create([
@@ -153,6 +171,7 @@ class ComandaController extends Controller
             'produs_id' => $produs->id,
             'optiune_lapte' => $request->optiune_lapte,
             'toppings' => $toppings,
+            'optiuni_extra' => !empty($optiuniExtra) ? $optiuniExtra : null,
             'data_rezervare' => $request->data_rezervare,
             'ora_rezervare' => $request->ora_rezervare,
             'numar_persoane' => $request->numar_persoane,

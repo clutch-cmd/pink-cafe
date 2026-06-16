@@ -50,8 +50,8 @@
                     required
                 >
             </div>
-            <div style="text-align: right; margin-top: -10px;" class="auth-switch">
-            <a href="<?php echo e(route('password.request')); ?>" style="font-size: 0.8rem; color: #e91e8c; text-decoration: none;">
+            <div style="text-align: right; margin-top: -10px;" class="auth-switch" class="auth-switch a:hover">
+            <a href="<?php echo e(route('password.request')); ?>" style="font-size: 0.8rem; color: #e91e8c;">
                 Ai uitat parola?
             </a>
         </div>

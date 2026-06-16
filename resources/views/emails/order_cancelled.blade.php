@@ -90,7 +90,7 @@
         <p class="total">Total: {{ number_format($comanda->total, 2) }} lei</p>
         <hr>
         <p style="text-align: center; color: #888;">
-            Pink Cafe • Strada Ta • Telefon: 0123 456 789<br>
+            Pink Cafe • Calea Republicii 24a, nr. 4 • Telefon: 0790 43 047<br>
             <small>Te așteptăm cu drag data viitoare!</small>
         </p>
     </div>

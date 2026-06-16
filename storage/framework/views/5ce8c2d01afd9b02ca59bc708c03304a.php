@@ -169,14 +169,6 @@
                             <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                         </div>
                     </a>
-                    <?php if(auth()->guard()->check()): ?>
-                        <form method="POST" action="<?php echo e(route('favorite.toggle', $produs->id)); ?>" class="fav-form">
-                            <?php echo csrf_field(); ?>
-                            <button type="submit" class="fav-btn <?php echo e(Auth::user()->favorite->contains($produs->id) ? 'fav-active' : ''); ?>">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
-                        </form>
-                    <?php endif; ?>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>

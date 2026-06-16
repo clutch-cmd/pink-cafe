@@ -81,132 +81,227 @@
         <?php endif; ?>
 
         
-        <form action="<?php echo e(route('comanda.trimite')); ?>" method="POST">
-        <?php echo csrf_field(); ?>
-            <input type="hidden" name="produs_id" value="<?php echo e($produs->id); ?>">
-
-            
-            <?php if(in_array($produs->categorie, ['bauturi_calde', 'cocktailuri', 'lemonades'])): ?>
-                <div class="customizer-section">
-                    <h3 class="section-subtitle"><i class="fa-solid fa-sliders" style="color: #e91e8c;"></i> Personalizează băutura</h3>
-                    
-                    
-                    <?php if($produs->categorie == 'bauturi_calde'): ?>
-                        <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Alege laptele:</p>
-                        <div class="option-group">
-                            <label class="option-label">
-                                <span><input type="radio" name="optiune_lapte" value="normal" data-price="0" checked> Lapte Normal</span>
-                                <span class="option-price">+0 lei</span>
-                            </label>
-                            <label class="option-label">
-                                <span><input type="radio" name="optiune_lapte" value="migdale" data-price="15"> Lapte de Migdale</span>
-                                <span class="option-price">+15 lei</span>
-                            </label>
-                            <label class="option-label">
-                                <span><input type="radio" name="optiune_lapte" value="ovaz" data-price="15"> Lapte de Ovăz</span>
-                                <span class="option-price">+15 lei</span>
-                            </label>
-                        </div>
-                    <?php endif; ?>
-
-                    
-                    <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; margin-top: 15px;">Adaugă extra topping:</p>
+        <?php if(in_array($produs->categorie, ['bauturi_calde', 'cocktailuri', 'lemonades'])): ?>
+            <div class="customizer-section">
+                <h3 class="section-subtitle"><i class="fa-solid fa-sliders" style="color: #e91e8c;"></i> Personalizează băutura</h3>
+                
+                
+                <?php if($produs->categorie == 'bauturi_calde'): ?>
+                    <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Alege laptele:</p>
                     <div class="option-group">
                         <label class="option-label">
-                            <span><input type="checkbox" name="toppings[]" value="frisca" data-price="10" class="topping-cb"> Frișcă Premium</span>
-                            <span class="option-price">+10 lei</span>
-                        </label>
-                        <label class="option-label">
-                            <span><input type="checkbox" name="toppings[]" value="sirop_vanilie" data-price="8" class="topping-cb"> Sirop Vanilie</span>
-                            <span class="option-price">+8 lei</span>
-                        </label>
-                        <label class="option-label">
-                            <span><input type="checkbox" name="toppings[]" value="gheata" data-price="0" class="topping-cb"> Gheață Extra</span>
+                            <span><input type="radio" name="optiune_lapte" value="normal" data-price="0" checked> Lapte Normal</span>
                             <span class="option-price">+0 lei</span>
                         </label>
+                        <label class="option-label">
+                            <span><input type="radio" name="optiune_lapte" value="migdale" data-price="15"> Lapte de Migdale</span>
+                            <span class="option-price">+15 lei</span>
+                        </label>
+                        <label class="option-label">
+                            <span><input type="radio" name="optiune_lapte" value="ovaz" data-price="15"> Lapte de Ovăz</span>
+                            <span class="option-price">+15 lei</span>
+                        </label>
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            
-            <div class="reservation-section">
-                <h3 class="section-subtitle"><i class="fa-solid fa-calendar-days" style="color: #9c27b0;"></i> Programează sau Rezervă masă</h3>
                 
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="res_date">Alege Data</label>
-                        <input type="date" id="res_date" name="data_rezervare" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="res_time">Alege Ora</label>
-                        <input type="time" id="res_time" name="ora_rezervare" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="res_pers">Nr. Persoane (opțional)</label>
-                        <select id="res_pers" name="numar_persoane" class="form-control">
-                            <option value="">Doar ridicare (fără masă)</option>
-                            <option value="1">1 Persoană (Masă)</option>
-                            <option value="2">2 Persoane (Masă)</option>
-                            <option value="4">4 Persoane (Masă)</option>
-                            <option value="6">6+ Persoane (Masă)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="res_obs">Mențiuni speciale</label>
-                        <input type="text" id="res_obs" name="mentiuni_speciale" class="form-control" placeholder="Ex: La geam, etc.">
-                    </div>
+                <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; margin-top: 15px;">Adaugă extra topping:</p>
+                <div class="option-group">
+                    <label class="option-label">
+                        <span><input type="checkbox" id="topping_frisca" value="frisca" data-price="10" class="topping-cb"> Frișcă Premium</span>
+                        <span class="option-price">+10 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="checkbox" id="topping_sirop" value="sirop_vanilie" data-price="8" class="topping-cb"> Sirop Vanilie</span>
+                        <span class="option-price">+8 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="checkbox" id="topping_gheata" value="gheata" data-price="0" class="topping-cb"> Gheață Extra</span>
+                        <span class="option-price">+0 lei</span>
+                    </label>
                 </div>
             </div>
+        <?php endif; ?>
 
-            
-            <?php if($produs->alergeni): ?>
-                <div class="alergeni-alert">
-                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.1rem; margin-top: 2px;"></i>
-                    <div>
-                        <strong>Informație Alergeni:</strong> <?php echo e($produs->alergeni); ?>
-
-                    </div>
+        
+        <?php if($produs->categorie == 'sandvisuri_burgere'): ?>
+            <div class="customizer-section">
+                <h3 class="section-subtitle"><i class="fa-solid fa-burger" style="color: #e91e8c;"></i> Personalizează Preparatul</h3>
+                
+                <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Alege extra ingrediente:</p>
+                <div class="option-group">
+                    <label class="option-label">
+                        <span><input type="checkbox" id="extra_bacon" value="bacon" data-price="15" class="extra-cb"> Extra Bacon</span>
+                        <span class="option-price">+15 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="checkbox" id="extra_cascaval" value="cascaval" data-price="10" class="extra-cb"> Extra Cașcaval</span>
+                        <span class="option-price">+10 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="checkbox" id="extra_ou" value="ou" data-price="8" class="extra-cb"> Ou Prăjit</span>
+                        <span class="option-price">+8 lei</span>
+                    </label>
                 </div>
-            <?php endif; ?>
-            
-            
-            <?php if($errors->any()): ?>
-            <div style="background:#ffebee;border:1px solid #ffcdd2;color:#c62828;padding:12px 15px;border-radius:12px;margin-bottom:20px;font-size:0.9rem;">
-                <ul style="margin:0;padding-left:18px;">
-                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li><?php echo e($error); ?></li>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </ul>
+
+                <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; margin-top: 15px;">Alege sosul preferat:</p>
+                <div class="option-group">
+                    <label class="option-label">
+                        <span><input type="radio" name="sos_extra" value="ketchup" data-price="0" checked> Ketchup</span>
+                        <span class="option-price">+0 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="radio" name="sos_extra" value="maioneza" data-price="0"> Maioneză</span>
+                        <span class="option-price">+0 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="radio" name="sos_extra" value="bbq" data-price="5"> Sos BBQ</span>
+                        <span class="option-price">+5 lei</span>
+                    </label>
+                    <label class="option-label">
+                        <span><input type="radio" name="sos_extra" value="usturoi" data-price="3"> Sos de Usturoi</span>
+                        <span class="option-price">+3 lei</span>
+                    </label>
+                </div>
             </div>
-            <?php endif; ?>
-            
-            <button type="submit" class="btn-action-order">
-                <i class="fa-solid fa-basket-shopping"></i> Continuă spre Comandă
-            </button>
-        </form>
+        <?php endif; ?>
+
+        
+        <?php if($produs->alergeni): ?>
+            <div class="alergeni-alert">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.1rem; margin-top: 2px;"></i>
+                <div>
+                    <strong>Informație Alergeni:</strong> <?php echo e($produs->alergeni); ?>
+
+                </div>
+            </div>
+        <?php endif; ?>
+        
+        
+        <button type="button" class="btn-action-order" onclick="addToCart()">
+            <i class="fa-solid fa-cart-plus"></i> Adaugă în Coș
+        </button>
 
     </div>
 </div>
+
+<?php if($produseSimilare->count() > 0): ?>
+<section class="similare-section">
+    <h2 class="similare-title">Produse Similare</h2>
+
+    <?php if($produseSimilare->count() > 2): ?>
+    <div class="similare-slider-container">
+        <button class="similare-arrow-prev" onclick="moveSimilare(-1)">&#10094;</button>
+        <div class="similare-slider-track" id="similareTrack">
+            <?php $__currentLoopData = $produseSimilare; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $similare): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <a href="<?php echo e(route('produs.show', $similare->id)); ?>" class="similare-slide-item">
+                <div class="similare-slide-img">
+                    <?php if($similare->imagine && trim($similare->imagine) !== ''): ?>
+                        <img src="<?php echo e(asset('images/' . $similare->imagine)); ?>" alt="<?php echo e($similare->nume); ?>">
+                    <?php else: ?>
+                        <div class="similare-slide-fallback">
+                            <i class="fa-solid fa-mug-saucer"></i>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="similare-slide-badge">
+                    <span class="similare-slide-name"><?php echo e($similare->nume); ?></span>
+                    <span class="similare-slide-pret"><?php echo e(number_format($similare->pret, 0)); ?> lei</span>
+                </div>
+            </a>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <button class="similare-arrow-next" onclick="moveSimilare(1)">&#10095;</button>
+    </div>
+    <?php else: ?>
+    <div class="similare-grid">
+        <?php $__currentLoopData = $produseSimilare; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $similare): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <a href="<?php echo e(route('produs.show', $similare->id)); ?>" class="similare-slide-item">
+            <div class="similare-slide-img">
+                <?php if($similare->imagine && trim($similare->imagine) !== ''): ?>
+                    <img src="<?php echo e(asset('images/' . $similare->imagine)); ?>" alt="<?php echo e($similare->nume); ?>">
+                <?php else: ?>
+                    <div class="similare-slide-fallback">
+                        <i class="fa-solid fa-mug-saucer"></i>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="similare-slide-badge">
+                <span class="similare-slide-name"><?php echo e($similare->nume); ?></span>
+                <span class="similare-slide-pret"><?php echo e(number_format($similare->pret, 0)); ?> lei</span>
+            </div>
+        </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+    <?php endif; ?>
+</section>
+
+<script>
+let similareCurrent = 0;
+function moveSimilare(dir) {
+    const track = document.getElementById('similareTrack');
+    if (!track) return;
+    const items = track.querySelectorAll('.similare-slide-item');
+    const total = items.length;
+    similareCurrent = (similareCurrent + dir + total) % total;
+    const itemWidth = items[0].offsetWidth + 20; // width + gap
+    const offset = similareCurrent * itemWidth;
+    track.scrollTo({ left: offset, behavior: 'smooth' });
+}
+</script>
+<?php endif; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ro.js"></script>
 
 <script>
+    // --- ADAUGĂ ÎN COȘ FUNCȚIE ---
+    function addToCart() {
+        // Calculează prețul final cu opțiunile selectate
+        let pretAdaugat = 0;
+        const inputsLapte = document.querySelectorAll('input[name="optiune_lapte"]');
+        const inputsToppings = document.querySelectorAll('.topping-cb');
+        const inputsExtra = document.querySelectorAll('.extra-cb');
+        const inputsSos = document.querySelectorAll('input[name="sos_extra"]');
+
+        inputsLapte.forEach(radio => { if(radio.checked) pretAdaugat += parseFloat(radio.getAttribute('data-price')); });
+        inputsToppings.forEach(cb => { if(cb.checked) pretAdaugat += parseFloat(cb.getAttribute('data-price')); });
+        inputsExtra.forEach(cb => { if(cb.checked) pretAdaugat += parseFloat(cb.getAttribute('data-price')); });
+        inputsSos.forEach(radio => { if(radio.checked) pretAdaugat += parseFloat(radio.getAttribute('data-price')); });
+
+        const pretFinal = <?php echo e($produs->pret); ?> + pretAdaugat;
+
+        // Colectează opțiunile selectate
+        const optiuni = [];
+        document.querySelectorAll('input[type="radio"]:checked, .topping-cb:checked, .extra-cb:checked').forEach(input => {
+            const label = input.closest('.option-label');
+            if (label) {
+                const text = label.querySelector('span')?.textContent.trim() || input.value;
+                optiuni.push(text);
+            }
+        });
+
+        // Adaugă în coș
+        if (typeof addItemToCart === 'function') {
+            const imageUrl = '<?php echo e($produs->imagine ? '/images/' . $produs->imagine : ''); ?>';
+            addItemToCart(<?php echo e($produs->id); ?>, '<?php echo e(addslashes($produs->nume)); ?>', pretFinal, imageUrl, { options: optiuni.join(', ') });
+            toggleCartPanel();
+        } else {
+            alert('Produsul a fost adăugat în coș!');
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // --- LOGICĂ FLATPICKR PENTRU CALENDAR ---
         flatpickr("#res_date", {
-            locale: "ro",                  // Setează calendarul în română
-            minDate: "today",              // Blochează complet zilele din trecut
-            dateFormat: "Y-m-d",           // Formatul trimis către baza de date
-            altInput: true,                // Creează un input frumos mascat
-            altFormat: "d F Y",            // Cum vede clientul data (ex: 05 Iunie 2026)
-            disableMobile: "true"          // Forțează designul unitar și pe telefoane
+            locale: "ro",
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "d F Y",
+            disableMobile: "true"
         });
 
-        // --- LOGICĂ FLATPICKR PENTRU CEAS ---
         flatpickr("#res_time", {
             enableTime: true,
             noCalendar: true,
@@ -220,17 +315,23 @@
         const elementPret = document.getElementById('dinamic-price');
         const inputsLapte = document.querySelectorAll('input[name="optiune_lapte"]');
         const inputsToppings = document.querySelectorAll('.topping-cb');
+        const inputsExtra = document.querySelectorAll('.extra-cb');
+        const inputsSos = document.querySelectorAll('input[name="sos_extra"]');
 
         function calculeazaPretFinal() {
             let pretAdaugat = 0;
             inputsLapte.forEach(radio => { if(radio.checked) pretAdaugat += parseFloat(radio.getAttribute('data-price')); });
             inputsToppings.forEach(cb => { if(cb.checked) pretAdaugat += parseFloat(cb.getAttribute('data-price')); });
+            inputsExtra.forEach(cb => { if(cb.checked) pretAdaugat += parseFloat(cb.getAttribute('data-price')); });
+            inputsSos.forEach(radio => { if(radio.checked) pretAdaugat += parseFloat(radio.getAttribute('data-price')); });
             const pretFinal = pretBaza + pretAdaugat;
             elementPret.textContent = pretFinal.toLocaleString('ro-RO', { minimumFractionDigits: 0 });
         }
 
         inputsLapte.forEach(radio => radio.addEventListener('change', calculeazaPretFinal));
         inputsToppings.forEach(cb => cb.addEventListener('change', calculeazaPretFinal));
+        inputsExtra.forEach(cb => cb.addEventListener('change', calculeazaPretFinal));
+        inputsSos.forEach(radio => radio.addEventListener('change', calculeazaPretFinal));
     });
 </script>
 <?php $__env->stopSection(); ?>

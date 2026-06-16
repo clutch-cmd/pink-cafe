@@ -169,14 +169,6 @@
                             <i class="fa-solid fa-circle-info" style="color:#e91e8c;"></i>
                         </div>
                     </a>
-                    @auth
-                        <form method="POST" action="{{ route('favorite.toggle', $produs->id) }}" class="fav-form">
-                            @csrf
-                            <button type="submit" class="fav-btn {{ Auth::user()->favorite->contains($produs->id) ? 'fav-active' : '' }}">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
-                        </form>
-                    @endauth
                 </div>
             @endforeach
         </div>

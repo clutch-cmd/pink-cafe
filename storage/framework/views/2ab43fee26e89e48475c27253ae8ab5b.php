@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <h2>Mulțumim pentru comandă, <?php echo e($comanda->nume); ?>! 🎉</h2>
-        <p>Comanda ta a fost înregistrată cu succes la <strong>Pink Cafe</strong>.</p>
+        <p>Comanda ta a fost înregistrată cu succes la <strong>PINK CAFÉ</strong>.</p>
 
         <hr>
 
@@ -75,7 +75,7 @@
         <hr>
 
         <p style="text-align: center; color: #888;">
-            Pink Cafe • Strada Ta • Telefon: 0123 456 789<br>
+            PINK CAFÉ • Calea Republicii 24a, nr. 4 • Telefon: 0790 43 047<br>
             <small>Îți mulțumim că ne-ai ales!</small>
         </p>
     </div>

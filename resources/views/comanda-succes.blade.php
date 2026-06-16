@@ -23,7 +23,7 @@
             
             @foreach($comanda->produse as $produs)
                 <div class="succes-produs">
-                    <span><i class="fa-solid fa-mug-hot" style="color: #e91e63; margin-right: 8px;"></i> {{ $produs->nume }} × {{ $produs->pivot->cantitate }}</span>
+                    <span><i class="fa-solid fa-mug-hot" margin-right: 8px;"></i> {{ $produs->nume }} × {{ $produs->pivot->cantitate }}</span>
                     <span>{{ $produs->pivot->pret * $produs->pivot->cantitate }} lei</span>
                 </div>
             @endforeach

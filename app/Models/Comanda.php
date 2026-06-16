@@ -22,6 +22,7 @@ class Comanda extends Model
         'produs_id',
         'optiune_lapte',
         'toppings',
+        'optiuni_extra',
         'data_rezervare',
         'ora_rezervare',
         'numar_persoane',
@@ -32,6 +33,7 @@ class Comanda extends Model
 
     protected $casts = [
         'toppings' => 'json',
+        'optiuni_extra' => 'json',
         'data_rezervare' => 'date',
     ];
 

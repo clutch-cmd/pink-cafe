@@ -23,7 +23,7 @@
             
             <?php $__currentLoopData = $comanda->produse; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $produs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="succes-produs">
-                    <span><i class="fa-solid fa-mug-hot" style="color: #e91e63; margin-right: 8px;"></i> <?php echo e($produs->nume); ?> × <?php echo e($produs->pivot->cantitate); ?></span>
+                    <span><i class="fa-solid fa-mug-hot" margin-right: 8px;"></i> <?php echo e($produs->nume); ?> × <?php echo e($produs->pivot->cantitate); ?></span>
                     <span><?php echo e($produs->pivot->pret * $produs->pivot->cantitate); ?> lei</span>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

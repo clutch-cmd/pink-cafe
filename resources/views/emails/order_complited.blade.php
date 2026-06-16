@@ -20,7 +20,7 @@
             <h2>Comanda a fost livrată! 🎉</h2>
             <p>Bună, <strong>{{ $comanda->nume }}</strong>.</p>
             <p>Comanda <strong>#{{ $comanda->id }}</strong> a fost livrată cu succes.</p>
-            <p>Îți mulțumim că ai ales Pink Cafe! ❤️</p>
+            <p>Îți mulțumim că ai ales PINK CAFÉ! ❤️</p>
         </div>
 
         <hr>
@@ -53,13 +53,13 @@
         <p class="total">Total plătit: {{ number_format($comanda->total, 2) }} lei</p>
 
         <p style="text-align: center;">
-            📍 Te așteptăm și data viitoare la Pink Cafe!
+            📍 Te așteptăm și data viitoare la PINK CAFÉ!
         </p>
 
         <hr>
 
         <p style="text-align: center; color: #888;">
-            Pink Cafe • Strada Ta • Telefon: 0123 456 789<br>
+            PINK CAFÉ • Calea Republicii 24a, nr. 4 • Telefon: 0790 43 047<br>
             <small>Mulțumim pentru încredere!</small>
         </p>
     </div>

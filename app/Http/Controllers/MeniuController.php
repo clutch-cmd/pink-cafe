@@ -43,6 +43,12 @@ class MeniuController extends Controller
 
         $produs = Produs::findOrFail($id);
 
-        return view('produs', compact('produs'));
+        // Produse similare din aceeași categorie (exclus produsul curent)
+        $produseSimilare = Produs::where('categorie', $produs->categorie)
+            ->where('id', '!=', $produs->id)
+            ->take(8)
+            ->get();
+
+        return view('produs', compact('produs', 'produseSimilare'));
     }
 }
